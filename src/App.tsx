@@ -1,4 +1,8 @@
+
 import { Router } from "./Routes/routes"
+
+
+
 
 
 function App() {
@@ -6,6 +10,9 @@ function App() {
   return (
     <>
       <Router/>
+
+      <h1>We Green</h1>
+
     </>
   )
 }
