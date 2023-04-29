@@ -1,5 +1,7 @@
 
 import { Router } from "./Routes/routes"
+import { GlobalStyle } from "./Styles/globalStyles"
+import { Reset } from "./Styles/reset"
 
 
 
@@ -10,9 +12,8 @@ function App() {
   return (
     <>
       <Router/>
-
-      <h1>We Green</h1>
-
+      <Reset/>
+      <GlobalStyle/>
     </>
   )
 }
