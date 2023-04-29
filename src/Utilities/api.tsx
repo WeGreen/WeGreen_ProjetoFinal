@@ -12,3 +12,12 @@ export const loginRequest = (formData) => {
 export const signupRequest = (formData) => {
     return api.post('/register', formData)
 }
+
+// export const fetchUserRequest = (id) => {
+//     return api.get(`/users/${id}`, {
+//         headers: {
+//             Authorization: `Bearer ${token}`,
+//           },
+//     })
+// }
+//pegar token no localStorage para habilitar esta requisição
