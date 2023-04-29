@@ -56,7 +56,7 @@ table {
 	border-spacing: 0;
 }
 
-h1, h2, h3, h4, p, span {
+h1, h2, h3, h4, p, span, button {
     font-family: 'Poppins', sans-serif;
 }
 `

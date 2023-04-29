@@ -1,5 +1,9 @@
+import { Header } from "../Components/Header/Header"
+
 export const Dashboard = () => {
     return(
-        <h1>Login</h1>
+        <>
+            <Header/>
+        </>
     )
 }

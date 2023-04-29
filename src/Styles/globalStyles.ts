@@ -15,6 +15,8 @@ export const GlobalStyle = createGlobalStyle`
     button {
         outline: none;
         cursor: pointer;
+        display: flex;
+        align-items: center;
     }
 
     h1 {
