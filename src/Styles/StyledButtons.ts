@@ -1,6 +1,10 @@
 import styled from "styled-components";
 
-export const StyledButtonGreen = styled.button`
+interface ButtonProps {
+    readonly fluid: boolean;
+  }
+
+export const StyledButtonGreen = styled.button<ButtonProps>`
     
     color: var(--white);
     font-size: 1rem;
@@ -11,6 +15,7 @@ export const StyledButtonGreen = styled.button`
     padding: 0 20px;
     border-radius: 8px;
     border: 2px solid var(--green1);
+    width: ${(props) => props.fluid ? '100%' : 'auto'};
 
     &:hover{
         background-color: var(--green2);
@@ -33,3 +38,4 @@ export const StyledButtonPurple = styled.button`
         color: var(--white);
     }
 `
+
