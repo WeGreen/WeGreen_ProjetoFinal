@@ -10,9 +10,6 @@ function App() {
   return (
     <>
       <Router/>
-
-      <h1>We Green</h1>
-
     </>
   )
 }
