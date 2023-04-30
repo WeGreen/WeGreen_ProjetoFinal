@@ -7,10 +7,10 @@ import { UserProvider } from './Providers/UserContext.tsx'
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <BrowserRouter>
       <UserProvider>
+    <BrowserRouter>
         <App />
-      </UserProvider>
     </BrowserRouter>
+      </UserProvider>
   </React.StrictMode>,
 )
