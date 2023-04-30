@@ -1,4 +1,5 @@
 import axios from "axios"
+import {toast} from 'react-toastify'
 
 export const api = axios.create({
     baseURL: "http://localhost:3333",
@@ -21,3 +22,12 @@ export const signupRequest = (formData) => {
 //     })
 // }
 //pegar token no localStorage para habilitar esta requisição
+
+const login = async () => {
+    try{
+        await api.post('');
+
+    }catch(error : any){
+        toast.error(error);
+    }
+}
