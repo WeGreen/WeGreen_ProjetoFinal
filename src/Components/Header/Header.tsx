@@ -20,7 +20,9 @@ export const Header = () => {
                     <img className="logo_img" src="src/assets/logo.svg" alt="WeGreen logo" />
                     <h1 className="header_title">WeGreen</h1>
                 </div>
-                <button className="button_logout" onClick={logout}><img className="img_logout" src="src/assets/logout.svg" alt="Sair do perfil"/></button>
+                <button className="button_logout" onClick={logout}>
+                    <img className="img_logout" src="src/assets/logout.svg" alt="Sair do perfil"/>
+                </button>
             </div>  
         </StyledHeaderContainer>
     )
