@@ -20,4 +20,13 @@ export const signupRequest = (formData) => {
 //           },
 //     })
 // }
-//pegar token no localStorage para habilitar esta requisição
+//@TODO pegar token no localStorage para habilitar esta requisição
+
+export const createPostRequest = (formData) => {
+        const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImphbmljZUBtYWlsLmNvbSIsImlhdCI6MTY4Mjg4NDA1OCwiZXhwIjoxNjgyODg3NjU4LCJzdWIiOiI0In0.Y_GzJrJWdgGyL-yjFJ47Jp4XXuzOvDJ-w2FvC-TMwu0" //@TODO get token from localStorage
+        return api.post("/posts", formData, {
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }
+    })
+}
