@@ -11,7 +11,7 @@ export const StyledUserTask = styled.div`
     padding: 0 50px;
 
     h3{
-        color: #45710F;
+        color: var(--green1);
     }
 
     p{
@@ -30,7 +30,7 @@ export const StyledHeaderTask = styled.div`
     
 
     h2{
-        color: #45710F;
+        color: var(--green1);
     }
 
     figure{
@@ -41,7 +41,7 @@ export const StyledHeaderTask = styled.div`
             height: 30px;
             width: 30px;
 
-            color: #45710F;
+            color: var(--green1);
         }
     }
 

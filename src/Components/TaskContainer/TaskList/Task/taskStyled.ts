@@ -59,13 +59,13 @@ export const StyledTaskCSS = css<IStyledTaskProps>`
       case "notDone":
         return css`
             .check__figure{
-                background-color: #45710F;
+                background-color: var(--green1);
             }
             .check__title{
-                color: #45710F;
+                color: var(--green1);
             }
             .check__edit{
-                color: #45710F;
+                color: var(--green1);
             }
         `;
     }
