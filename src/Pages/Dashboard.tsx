@@ -4,8 +4,8 @@ import { TaskContainer } from "../Components/TaskContainer/taskContainer"
 export const Dashboard = () => {
     return(
         <>
-            <TaskContainer />
             <Header/>
+            <TaskContainer />
         </>
     )
 }

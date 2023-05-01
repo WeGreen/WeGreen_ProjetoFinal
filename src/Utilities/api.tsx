@@ -11,7 +11,7 @@ export const loginRequest = (formData) => {
 }
 
 export const signupRequest = (formData) => {
-    return api.post('/register', formData).
+    return api.post('/register', formData)
 }
 
 // export const fetchUserRequest = (id) => {
@@ -21,7 +21,6 @@ export const signupRequest = (formData) => {
 //           },
 //     })
 // }
-
 //@TODO pegar token no localStorage para habilitar esta requisição
 
 export const createPostRequest = (formData: TCreatePostFormValues) => {

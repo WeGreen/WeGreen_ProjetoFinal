@@ -8,8 +8,7 @@ export const Router = () => {
     return (
       <Routes>
         <Route path="/login" element={<LoginPage/>}/>
-        <Route path="/signup" element={<SignupPage/>}/>
-
+        <Route path="/register" element={<SignupPage/>}/>
         <Route path="/" >
         <Route index element={
             <TaskProviders>
@@ -17,9 +16,7 @@ export const Router = () => {
             </TaskProviders>
           }
         />
-
         </Route>
-
       </Routes>
     );
   };
