@@ -1,5 +1,11 @@
+import { Header } from "../Components/Header/Header"
+import { TaskContainer } from "../Components/TaskContainer/taskContainer"
+
 export const Dashboard = () => {
     return(
-        <h1>Login</h1>
+        <>
+            <Header />
+            <TaskContainer />
+        </>
     )
 }

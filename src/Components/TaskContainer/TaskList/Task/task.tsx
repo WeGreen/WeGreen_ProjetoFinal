@@ -2,8 +2,9 @@ import { StyledTask } from "./taskStyled";
 import NoCheck from "../../../../assets/Icon__NoCheck.png"
 import Check from "../../../../assets/Icon__Check.png"
 import { useState } from "react";
+import { ITasksProviderProps } from "../../../../Providers/TaskProviders/typeTask";
 
-export const Task = () => {
+export const Task = ( { task }: ITasksProviderProps ) => {
     const [ checkValue, setCheckValue] = useState(false)
     const colorCheck = "done";
     const colorNoCheck = "notDone";
@@ -11,9 +12,7 @@ export const Task = () => {
     const image = checkValue ? Check : NoCheck
     const color = checkValue ? colorCheck : colorNoCheck
 
-
     return(
-        <>
             <StyledTask $buttonStyle={color} onClick={() => setCheckValue(!checkValue)}>
                 <div className="check__figure">
                     <figure>
@@ -22,7 +21,7 @@ export const Task = () => {
                 </div>
 
                 <div className="check__title">
-                    <h3>Regar a coves</h3>
+                    <h3>{task.title}</h3>
                 </div>
 
                 <div className="check__edit">
@@ -30,7 +29,5 @@ export const Task = () => {
                 </div>
 
             </StyledTask>
-
-        </>    
-    )
+     )
 }
