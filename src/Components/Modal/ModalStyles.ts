@@ -60,4 +60,10 @@ export const StyledModalButtonsContainer = styled.div`
     width: 100%;
     justify-content: end;
     gap: 15px;
+
+    @media (max-width: 420px){
+        justify-content: space-between;
+        gap: 5px;
+    }
+    /* @TODO está quebrando na menor tela: faixa branca em baixo */
 `
