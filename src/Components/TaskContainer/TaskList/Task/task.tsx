@@ -2,7 +2,11 @@ import { StyledTask } from "./taskStyled";
 import NoCheck from "../../../../assets/Icon__NoCheck.png"
 import Check from "../../../../assets/Icon__Check.png"
 import { useState } from "react";
-import { ITasksProviderProps } from "../../../../Providers/TaskProviders/typeTask";
+import { ITasks } from "../../../../Providers/TaskProviders/typeTask";
+
+export interface ITasksProviderProps{
+    task: ITasks;
+}
 
 export const Task = ( { task }: ITasksProviderProps ) => {
     const [ checkValue, setCheckValue] = useState(false)
