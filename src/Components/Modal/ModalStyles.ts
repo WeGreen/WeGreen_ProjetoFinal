@@ -57,7 +57,7 @@ export const StyledPostTitleContainer = styled.div `
 
 export const StyledModalButtonsContainer = styled.div`
     display: flex;
-    width: 50%;
-    justify-content: space-between;
-    gap: 20px;
+    width: 100%;
+    justify-content: end;
+    gap: 15px;
 `
