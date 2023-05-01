@@ -1,6 +1,5 @@
 import axios from "axios"
 import { TCreatePostFormValues } from "../Components/Modal/CreatePostModal/CreatePostSchema";
-import { TEditPostFormValues } from "../Components/Modal/EditPostModal/EditPostSchema";
 
 export type TPost = {
     title: string,
