@@ -60,16 +60,22 @@ export const StyledPostTitleContainer = styled.div `
     }
 `
 
-export const StyledDeteleConfirmationContainer = styled.div`
+export const StyledDeleteConfirmationContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 8px;
-    margin-top: 25px;
+    margin-top: 16px;
+
+    h3.confirmation_question {
+        font-weight: 500;
+        font-size: 1.5rem;
+        line-height: 100%;
+    }
 `
 
 export const StyledConfirmationSpan = styled.span`
-    font-weight: 300;
+    font-weight: 400;
     font-size: 0.875rem;
     color: var(--grey1);
     margin-bottom: 10px;
