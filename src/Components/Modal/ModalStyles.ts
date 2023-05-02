@@ -6,7 +6,7 @@ export const StyledOverlay = styled.div`
     position: absolute;
 `
 
-export const StyledCreatePostDialog = styled.div`
+export const StyledDialog = styled.div`
     width: 70%;
     max-width: 800px;
     padding: 20px 30px;
@@ -53,6 +53,26 @@ export const StyledPostTitleContainer = styled.div `
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
+
+    p.confirmation_title{
+        margin-left: 15px;
+        font-weight: 300;
+    }
+`
+
+export const StyledDeteleConfirmationContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    margin-top: 25px;
+`
+
+export const StyledConfirmationSpan = styled.span`
+    font-weight: 300;
+    font-size: 0.875rem;
+    color: var(--grey1);
+    margin-bottom: 10px;
 `
 
 export const StyledModalButtonsContainer = styled.div`
