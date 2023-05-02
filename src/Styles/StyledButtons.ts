@@ -10,8 +10,8 @@ export const StyledButtonGreen = styled.button<ButtonProps>`
     font-size: 1rem;
     font-weight: 600;
     background-color: var(--green1);
-    height: 24px;
-    line-height: 24px;
+    height: 32px;
+    line-height: 32px;
     padding: 0 20px;
     border-radius: 8px;
     border: 2px solid var(--green1);
@@ -27,11 +27,12 @@ export const StyledButtonPurple = styled.button`
     font-size: 1rem;
     font-weight: 600;
     background-color: var(--white);
-    height: 24px;
-    line-height: 24px;
+    height: 32px;
+    line-height: 32px;
     padding: 0 20px;
     border-radius: 8px;
     border: 2px solid var(--purple1);
+    width: fit-content;
 
     &:hover{
         background-color: var(--purple1);

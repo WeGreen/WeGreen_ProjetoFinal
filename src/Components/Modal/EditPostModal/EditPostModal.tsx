@@ -2,7 +2,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { EditPostSchema, TEditPostFormValues } from "./EditPostSchema";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { TPost, editPostRequest } from "../../../Utilities/api";
-import { StyledCreatePostDialog, StyledModalButtonsContainer, StyledOverlay, StyledPostTitleContainer } from "../ModalStyles";
+import { StyledDialog, StyledModalButtonsContainer, StyledOverlay, StyledPostTitleContainer } from "../ModalStyles";
 import { CloseModalButton } from "../ModalFragments/CloseModalButton/CloseModalButton";
 import { StyledModalForm } from "../ModalFormStyles";
 import { Input } from "../ModalInputs/ModalInput";
@@ -43,7 +43,7 @@ export const EditPostModal = ({isOpen, onClose, post }: TEditPostModalProps) => 
     return(
         <>
             <StyledOverlay></StyledOverlay>
-            <StyledCreatePostDialog>
+            <StyledDialog>
                 <StyledPostTitleContainer className="modalTitle_container">
                     <h2 className="modal_title">Editar Post</h2>
                     <CloseModalButton onClick={onClose} />
@@ -52,12 +52,12 @@ export const EditPostModal = ({isOpen, onClose, post }: TEditPostModalProps) => 
                     <Input label="Título" placeholder="Escreva o título aqui" {...register("title")} type="text" error={errors?.title?.message}/>
                     <Textarea label="Texto" id="createPost_content" placeholder="Escreva seu texto aqui" {...register("content")} rows={10} error={errors?.content?.message}/>
                     <StyledModalButtonsContainer>
-                        <StyledButtonPurple>Cancelar</StyledButtonPurple>
+                        <StyledButtonPurple onClick={onClose}>Cancelar</StyledButtonPurple>
                         <StyledButtonGreen fluid={false} type="submit">Publicar</StyledButtonGreen>
                     </StyledModalButtonsContainer>
                     
                 </StyledModalForm>
-            </StyledCreatePostDialog>
+            </StyledDialog>
         </>
     )
 }

@@ -4,7 +4,7 @@ import { CloseModalButton } from "../ModalFragments/CloseModalButton/CloseModalB
 import { createPostRequest } from "../../../Utilities/api";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { CreatePostSchema, TCreatePostFormValues } from "./CreatePostSchema";
-import { StyledCreatePostDialog, StyledModalButtonsContainer, StyledOverlay, StyledPostTitleContainer } from "../ModalStyles";
+import { StyledDialog, StyledModalButtonsContainer, StyledOverlay, StyledPostTitleContainer } from "../ModalStyles";
 import { StyledModalForm} from "../ModalFormStyles";
 import { Input } from "../ModalInputs/ModalInput";
 import { Textarea } from "../ModalInputs/ModalTextArea";
@@ -39,7 +39,7 @@ export const CreatePostModal = ({isOpen, onClose }: TCreatePostModalProps) => {
     return(
         <>
             <StyledOverlay></StyledOverlay>
-            <StyledCreatePostDialog>
+            <StyledDialog>
                 <StyledPostTitleContainer className="modalTitle_container">
                     <h2 className="modal_title">Novo Post</h2>
                     <CloseModalButton onClick={onClose} />
@@ -50,12 +50,12 @@ export const CreatePostModal = ({isOpen, onClose }: TCreatePostModalProps) => {
                     <Textarea label="Texto" id="createPost_content" placeholder="Escreva seu texto aqui" {...register("content")} rows="10" error={errors?.content?.message}/>
 
                     <StyledModalButtonsContainer>
-                        <StyledButtonPurple>Cancelar</StyledButtonPurple>
+                        <StyledButtonPurple onClick={onClose}>Cancelar</StyledButtonPurple>
                         <StyledButtonGreen fluid={false} type="submit">Publicar</StyledButtonGreen>
                     </StyledModalButtonsContainer>
                     
                 </StyledModalForm>
-            </StyledCreatePostDialog>
+            </StyledDialog>
         </>
     )
 }
