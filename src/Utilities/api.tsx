@@ -1,6 +1,13 @@
 import axios from "axios"
 import { TCreatePostFormValues } from "../Components/Modal/CreatePostModal/CreatePostSchema";
 
+export type TPost = {
+    title: string,
+    content: string,
+    userId: number,
+    id: number
+}
+
 export const api = axios.create({
     baseURL: "http://localhost:3333",
     timeout: 10000,
@@ -31,3 +38,14 @@ export const createPostRequest = (formData: TCreatePostFormValues) => {
             }
     })
 }
+
+export const editPostRequest = (post: TPost) => {
+    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImphbmljZUBtYWlsLmNvbSIsImlhdCI6MTY4Mjk3NjU4MCwiZXhwIjoxNjgyOTgwMTgwLCJzdWIiOiI0In0.1mIMbC7weXV0ZDVk3OpG0Vy1pVKLlMJu0gIFlEm571E" //@TODO get token from localStorage
+    console.log(post)
+    return api.put(`/posts/${post.id}`, post, {
+        headers: {
+            "Authorization": `Bearer ${token}`
+        }
+})
+}
+

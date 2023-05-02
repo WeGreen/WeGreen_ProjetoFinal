@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 interface ButtonProps {
-    readonly fluid: boolean;
-  }
+    fluid: boolean;
+}
 
 export const StyledButtonGreen = styled.button<ButtonProps>`
     
