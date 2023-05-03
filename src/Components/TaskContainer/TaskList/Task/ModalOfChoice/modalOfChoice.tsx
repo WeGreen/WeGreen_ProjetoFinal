@@ -20,15 +20,15 @@ export const ModalOfChose = ({isOpen, onClose, task }: TChoseTaskModalProps) => 
     return(
         <>
             <StyledOverlay></StyledOverlay>
-            <EditTaskModal isOpen={editTaskModalIsOpen} onClose={() => setEditTaskModalIsOpen(false)}/>
-            <DeleteTaskModal isOpen={deleteTaskModalIsOpen} onClose={() => setDeleteTaskModalIsOpen(false)}/>
+            <EditTaskModal isOpen={editTaskModalIsOpen} onClose={() => setEditTaskModalIsOpen(false)} task={task} />
+            <DeleteTaskModal isOpen={deleteTaskModalIsOpen} onClose={() => setDeleteTaskModalIsOpen(false)} task={task} />
 
             <StyledDialog>
                 <StyledCloseModalButton onClick={onClose} />
 
                 <div>
                     <p onClick={() => setEditTaskModalIsOpen(true)} > Editar </p>
-                    <p onClick={() => setEditTaskModalIsOpen(true)} > Delete </p>
+                    <p onClick={() => setDeleteTaskModalIsOpen(true)} > Delete </p>
                 </div>
             </StyledDialog>
 

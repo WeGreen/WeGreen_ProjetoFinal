@@ -19,7 +19,7 @@ type tUserId = number
 
 export const CreateTaskModal = ({isOpen, onClose }: TCreateTaskModalProps) => {
 
-    const userId: tUserId = 5 // @TODO Pegar do provider
+    const userId: tUserId = 6 // @TODO Pegar do provider
 
     const { register, handleSubmit, formState:{errors}} = useForm<TCreateTaskFormValues>({
         resolver: zodResolver(CreateTaskSchema),

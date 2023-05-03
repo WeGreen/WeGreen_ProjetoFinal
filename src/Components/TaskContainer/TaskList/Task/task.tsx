@@ -23,7 +23,7 @@ export const Task = ( { task }: ITasksProviderProps ) => {
     return(
 
         <>
-            <ModalOfChose isOpen={selectTaskModalIsOpen} onClose={() => setSelectTaskModalIsOpen(false)}/>
+            <ModalOfChose isOpen={selectTaskModalIsOpen} onClose={() => setSelectTaskModalIsOpen(false)} task={task} />
         
             <StyledTask $buttonStyle={color} >
 

@@ -27,4 +27,6 @@ export interface ITasksContext{
     setDeleteTaskModalIsOpen: Dispatch<SetStateAction<boolean>>,
     selectTaskModalIsOpen: boolean,
     setSelectTaskModalIsOpen: Dispatch<SetStateAction<boolean>>,
+    selectTask: ITasks[],
+    setSelectTask: Dispatch<SetStateAction<ITasks[]>>,
 }

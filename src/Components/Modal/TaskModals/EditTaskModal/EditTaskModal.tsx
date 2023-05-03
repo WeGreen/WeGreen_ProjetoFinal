@@ -17,12 +17,10 @@ type TEditTaskModalProps = {
 
 export const EditTaskModal = ({isOpen, onClose, task }: TEditTaskModalProps) => {
 
-    console.log(task)
-    
     const { register, handleSubmit, formState:{ errors } } = useForm<TEditTaskFormValues>({
         resolver: zodResolver(EditTaskSchema),
         defaultValues: {
-            title: task?.title,
+            title: task.title,
         }
     })
     
