@@ -39,6 +39,14 @@ export const GlobalStyle = createGlobalStyle`
         color: var(--black);
     }
 
+   body{
+    background-image: url('twolettuces.svg');
+    background-size: cover;
+   
+   }
+
+
+
 
 
   

@@ -1,17 +1,13 @@
 import { useNavigate } from "react-router-dom"
 import { StyledHeaderContainer } from "./HeaderStyle";
-
+import { UserContext } from "../../Providers/UserContext";
+import { useContext } from "react";
 
 export const Header = () => {
 
     const navigate = useNavigate();
 
-    const logout = () => {
-        localStorage.removeItem("@wegreen:userId");
-        localStorage.removeItem("@wegreen:token");
-        // setUser(null);
-        navigate("/login");
-    }
+    const {logout} = useContext (UserContext)
 
     return(
         <StyledHeaderContainer>

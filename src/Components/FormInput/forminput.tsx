@@ -2,15 +2,20 @@
 import { Container, Input, Legend } from './formInputStyle'
 
 interface InputProps{
-  legend: string;
+ id: string;
+ type:string;
+  label: string;
+  register:any;
   placeholder: string;
+  error:string | undefined;
 }
 
-const FormInput = ({legend , placeholder } : InputProps) => {
+const FormInput = ({id, type , label , placeholder , register , error } : InputProps) => {
   return (
   <Container>
-   <Legend>{legend}</Legend>
-    <Input placeholder={placeholder}/>
+   <Legend>{label}</Legend>
+    <Input placeholder={placeholder} type={type} {...register(id)}/>
+    <p>{error}</p>
   </Container>
   )
 }
