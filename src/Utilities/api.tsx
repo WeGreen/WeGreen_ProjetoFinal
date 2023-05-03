@@ -19,14 +19,6 @@ export const api = axios.create({
     timeout: 10000,
 });
 
-export const loginRequest = (formData) => {
-    return api.post('/login', formData)
-}
-
-export const signupRequest = (formData) => {
-    return api.post('/register', formData)
-}
-
 // export const fetchUserRequest = (id) => {
 //     return api.get(`/users/${id}`, {
 //         headers: {
