@@ -28,7 +28,7 @@ export const Task = ( { task }: ITasksProviderProps ) => {
                     <h3>{task.title}</h3>
                 </div>
 
-                <div className="check__edit">
+                <div className="check__edit" onClick={(event) => console.log(event)}>
                     <p> ... </p>
                 </div>
 

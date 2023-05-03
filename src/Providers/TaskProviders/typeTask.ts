@@ -17,4 +17,6 @@ export interface ITasks{
 
 export interface ITasksContext{
     allListTasks: ITasks[],
+    createTaskModalIsOpen: boolean,
+    setCreateTaskModalIsOpen: boolean,
 }

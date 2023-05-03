@@ -39,6 +39,8 @@ export const StyledTaskCSS = css<IStyledTaskProps>`
         font-size: 20px;
         font-weight: 600;
 
+        cursor: pointer;
+
     }
 
   ${({ $buttonStyle }) => {

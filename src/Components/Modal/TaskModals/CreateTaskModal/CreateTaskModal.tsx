@@ -17,7 +17,8 @@ type tUserId = number
 
 
 export const CreateTaskModal = ({isOpen, onClose }: TCreateTaskModalProps) => {
-    const userId: tUserId = 4 // @TODO Pegar do provider
+
+    const userId: tUserId = 5 // @TODO Pegar do provider
 
     const { register, handleSubmit, formState:{errors}} = useForm<TCreateTaskFormValues>({
         resolver: zodResolver(CreateTaskSchema),
@@ -45,7 +46,7 @@ export const CreateTaskModal = ({isOpen, onClose }: TCreateTaskModalProps) => {
                 </StyledPostTitleContainer>
 
                 <StyledModalForm onSubmit={handleSubmit(onSubmit)}>
-                    <Input label="Tarefa" placeholder="Digite a tarefa aqui." {...register("title")} type="text" error={errors?.content?.message} />
+                    <Input label="Tarefa" placeholder="Digite a tarefa aqui." {...register("title")} type="text" error={errors?.title?.message} />
 
                     <StyledModalButtonsContainer>
                         <StyledButtonPurple onClick={onClose}>Cancelar</StyledButtonPurple>
