@@ -1,5 +1,7 @@
 import axios from "axios"
 import { TCreatePostFormValues } from "../Components/Modal/CreatePostModal/CreatePostSchema";
+import { TCreateTaskFormValues } from "../Components/Modal/TaskModals/CreateTaskModal/CreateTaskSchema";
+import { ITasks } from "../Providers/TaskProviders/typeTask";
 
 export type TPost = {
     title: string,
@@ -9,6 +11,8 @@ export type TPost = {
 }
 
 type TPostId = number;
+
+const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImphbmljZUBtYWlsLmNvbSIsImlhdCI6MTY4MzA3MTg4MywiZXhwIjoxNjgzMDc1NDgzLCJzdWIiOiIyIn0.FkNKX14g7rfPistTet8eDuwLcnipY0JVaJ8Lpf-QQ6w" //@TODO get token from localStorage or context
 
 export const api = axios.create({
     baseURL: "http://localhost:3333",
@@ -33,7 +37,7 @@ export const signupRequest = (formData) => {
 //@TODO pegar token no localStorage para habilitar esta requisição
 
 export const createPostRequest = (formData: TCreatePostFormValues) => {
-        const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImphbmljZUBtYWlsLmNvbSIsImlhdCI6MTY4Mjg4ODEwNSwiZXhwIjoxNjgyODkxNzA1LCJzdWIiOiI0In0.Ca6C1wWX3xzQ6tzKHYWw6BMnFlqCy88utbuUgOmMy2A" //@TODO get token from localStorage
+
         return api.post("/posts", formData, {
             headers: {
                 "Authorization": `Bearer ${token}`
@@ -42,7 +46,7 @@ export const createPostRequest = (formData: TCreatePostFormValues) => {
 }
 
 export const editPostRequest = (post: TPost) => {
-    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImphbmljZUBtYWlsLmNvbSIsImlhdCI6MTY4Mjk3NjU4MCwiZXhwIjoxNjgyOTgwMTgwLCJzdWIiOiI0In0.1mIMbC7weXV0ZDVk3OpG0Vy1pVKLlMJu0gIFlEm571E" //@TODO get token from localStorage
+
     console.log(post)
     return api.put(`/posts/${post.id}`, post, {
         headers: {
@@ -52,7 +56,7 @@ export const editPostRequest = (post: TPost) => {
 }
 
 export const deletePostRequest = (postId: TPostId) => {
-    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImphbmljZUBtYWlsLmNvbSIsImlhdCI6MTY4Mjk5NjE5MCwiZXhwIjoxNjgyOTk5NzkwLCJzdWIiOiI0In0.M6cVEbMgxtTt1hQ_YrnVCraN06OGl4SmETiPbqRy7Zw" //@TODO get token from localStorage
+ 
     return api.delete(`/posts/${postId}`, {
         headers: {
             "Authorization": `Bearer ${token}`
@@ -60,3 +64,30 @@ export const deletePostRequest = (postId: TPostId) => {
 })
 }
 
+export const createTaskRequest = (formData: TCreateTaskFormValues) => {
+    
+    return api.post("/tasks", formData, {
+        headers: {
+            "Authorization": `Bearer ${token}`
+        }
+})
+}
+
+export const editTaskRequest = (task: ITasks) => {
+
+    console.log(task)
+    return api.put(`/tasks/${task.id}`, task, {
+        headers: {
+            "Authorization": `Bearer ${token}`
+        }
+})
+}
+
+export const deleteTaskRequest = (taskId: number) => {
+
+    return api.delete(`/tasks/${taskId}`, {
+        headers: {
+            "Authorization": `Bearer ${token}`
+        }
+})
+}
