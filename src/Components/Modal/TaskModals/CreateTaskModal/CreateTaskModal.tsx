@@ -14,6 +14,7 @@ type TCreateTaskModalProps = {
 }
 
 type tUserId = number
+//@TODO pegar tipagem do provider
 
 
 export const CreateTaskModal = ({isOpen, onClose }: TCreateTaskModalProps) => {
