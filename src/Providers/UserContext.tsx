@@ -1,45 +1,98 @@
-import React, { createContext, useEffect, useState } from "react";
+import { createContext, useEffect, useState } from "react";
+import { TLoginValues } from "../Pages/LoginSchema";
+import { toast } from "react-toastify";
+import { api } from "../Utilities/api";
+import { TSignupValues } from "../Pages/SignupSchema";
 
-export const UserContext = createContext({} as IUserContext);
-
-interface IUserProviderProps {
+interface UserProviderProps {
   children: React.ReactNode;
 }
 
-interface IUserContext {
-  user: IUser | null;
-  setUser: React.Dispatch<React.SetStateAction<IUser | null>>;
-  isLoadingUser: boolean;
-}
-
-export interface IUser {
+interface IUser {
+  id: number;
   name: string;
   email: string;
-  id: number;
 }
 
-export const UserProvider = ({ children }: IUserProviderProps) => {
-  const [user, setUser] = useState<IUser | null>(null);
-  const [isLoadingUser, setLoadingUser] = useState(true);
+interface UserContextProps {
+  user: IUser | undefined;
+  login: (userData: TLoginValues) => Promise<void>;
+  register: (userData: TSignupValues) => Promise<void>;
+  logout: () => void;
+  loading: boolean;
+}
+
+export const UserContext = createContext({} as UserContextProps);
+
+export const UserProvider = ({ children }: UserProviderProps) => {
+  const [loading, setLoading] = useState(true);
+  const [user, setUser] = useState(undefined);
+
+  const login = async (userData: TLoginValues) => {
+    setLoading(true);
+    try {
+      const res = await api.post("/login", userData);
+
+      localStorage.setItem("@wegreen:token", res.data.accessToken);
+      localStorage.setItem("@wegreen:userId", JSON.stringify(res.data.user));
+
+      setUser(res.data.user);
+    } catch (error: any) {
+      console.log(error);
+      toast.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const register = async (formData: TSignupValues) => {
+    setLoading(true);
+    try {
+      const userData = {
+        name: formData.name,
+        email: formData.email,
+        password: formData.password,
+      };
+
+      const res = await api.post("/register", userData);
+      localStorage.setItem("@wegreen:token", res.data.accessToken);
+      localStorage.setItem("@wegreen:userId", JSON.stringify(res.data.user));
+      setUser(res.data.user);
+    } catch (error: any) {
+      console.log(error);
+      toast.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const logout = () => {
+    localStorage.removeItem("@wegreen:userId");
+    localStorage.removeItem("@wegreen:token");
+
+    setUser(undefined);
+    return;
+  };
 
   useEffect(() => {
-    const fetchUser = async () => {
+    (async () => {
+      setLoading(true);
       try {
-          // Aqui faz a request pra buscar o usuário atual
-          // e coloca ele no setUser
-        // setUser(data);
-      } catch (error) {
-        // mostrar error?
-      } finally {
-        setLoadingUser(false);
-      }
-    };
+        const user = localStorage.getItem("@wegreen:userId");
 
-    fetchUser();
+        if (user) {
+          setUser(JSON.parse(user));
+        }
+      } catch (error: any) {
+        console.log(error);
+      } finally {
+        setLoading(false);
+      }
+    })();
   }, []);
 
   return (
-    <UserContext.Provider value={{ user, setUser, isLoadingUser }}>
+    <UserContext.Provider value={{ user, login, register, logout, loading }}>
       {children}
     </UserContext.Provider>
   );
