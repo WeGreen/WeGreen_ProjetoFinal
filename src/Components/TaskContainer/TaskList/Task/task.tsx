@@ -1,14 +1,18 @@
 import { StyledTask } from "./taskStyled";
 import NoCheck from "../../../../assets/Icon__NoCheck.png"
 import Check from "../../../../assets/Icon__Check.png"
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { ITasks } from "../../../../Providers/TaskProviders/typeTask";
+import { TaskContext } from "../../../../Providers/TaskProviders/taskContext";
+
+import { ModalOfChose } from "./ModalOfChoice/modalOfChoice";
 
 export interface ITasksProviderProps{
     task: ITasks;
 }
 
 export const Task = ( { task }: ITasksProviderProps ) => {
+    const {selectTaskModalIsOpen, setSelectTaskModalIsOpen } = useContext( TaskContext )
     const [ checkValue, setCheckValue] = useState(false)
     const colorCheck = "done";
     const colorNoCheck = "notDone";
@@ -17,21 +21,32 @@ export const Task = ( { task }: ITasksProviderProps ) => {
     const color = checkValue ? colorCheck : colorNoCheck
 
     return(
-            <StyledTask $buttonStyle={color} onClick={() => setCheckValue(!checkValue)}>
-                <div className="check__figure">
-                    <figure>
-                        <img src={image} alt="" />
-                    </figure>
+
+        <>
+            <ModalOfChose isOpen={selectTaskModalIsOpen} onClose={() => setSelectTaskModalIsOpen(false)}/>
+        
+            <StyledTask $buttonStyle={color} >
+
+
+                <div className="setButton__color" onClick={() => setCheckValue(!checkValue)}>
+
+                    <div className="check__figure">
+                        <figure>
+                            <img src={image} alt="" />
+                        </figure>
+                    </div>
+
+                    <div className="check__title">
+                        <h3>{task.title}</h3>
+                    </div>
+
                 </div>
 
-                <div className="check__title">
-                    <h3>{task.title}</h3>
-                </div>
-
-                <div className="check__edit" onClick={(event) => console.log(event)}>
+                <div className="check__edit" onClick={() => setSelectTaskModalIsOpen(true)}>
                     <p> ... </p>
                 </div>
 
             </StyledTask>
+        </>
      )
 }

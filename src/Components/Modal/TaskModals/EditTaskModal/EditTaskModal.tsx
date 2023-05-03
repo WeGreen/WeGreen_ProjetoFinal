@@ -15,15 +15,20 @@ type TEditTaskModalProps = {
     task: ITasks;
 }
 
-export const EditTasktModal = ({isOpen, onClose, task }: TEditTaskModalProps) => {
+export const EditTaskModal = ({isOpen, onClose, task }: TEditTaskModalProps) => {
+
+    console.log(task)
+    
     const { register, handleSubmit, formState:{ errors } } = useForm<TEditTaskFormValues>({
         resolver: zodResolver(EditTaskSchema),
         defaultValues: {
-            title: task.title,
+            title: task?.title,
         }
     })
     
     const onSubmit: SubmitHandler<TEditTaskFormValues> = async (formData) => {
+
+        console.log(formData)
         try {
            const response =  await editTaskRequest({
             ...formData,

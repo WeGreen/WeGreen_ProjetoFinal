@@ -7,8 +7,11 @@ export const TaskContext = createContext( {} as ITasksContext)
 export const TaskProviders = ( { children }: ITasksProviderProps ) => {
     const [ allListTasks, setAllListTasks ] = useState<ITasks[]>([]);
     const [ createTaskModalIsOpen, setCreateTaskModalIsOpen ] = useState(false);
+    const [ editTaskModalIsOpen, setEditTaskModalIsOpen ] = useState(false);
+    const [ deleteTaskModalIsOpen, setDeleteTaskModalIsOpen ] = useState(false);
+    const [ selectTaskModalIsOpen, setSelectTaskModalIsOpen ] = useState(false);
 /*     const userToken = localStorage.getItem( "@wegreen:usertoken" ) */
-    const userToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvYW9AbWFpbC5jb20iLCJpYXQiOjE2ODMwNjYwNzAsImV4cCI6MTY4MzA2OTY3MCwic3ViIjoiNSJ9.t2VZbT0ajSSXy3lmZb9_PFYNzwU3c_m4Ox6cLwrfINA"
+    const userToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvYW9AbWFpbC5jb20iLCJpYXQiOjE2ODMxMjU5NzEsImV4cCI6MTY4MzEyOTU3MSwic3ViIjoiNSJ9._yBk3gj0i8Rsykq_1whxfv2dsn9u57PzPC4-c88_P8g"
 
 
     useEffect(() => {
@@ -28,7 +31,7 @@ export const TaskProviders = ( { children }: ITasksProviderProps ) => {
     },[createTaskModalIsOpen]);
 
     return(
-        <TaskContext.Provider value={{ allListTasks, createTaskModalIsOpen, setCreateTaskModalIsOpen }}>
+        <TaskContext.Provider value={{ allListTasks, createTaskModalIsOpen, setCreateTaskModalIsOpen, editTaskModalIsOpen, setEditTaskModalIsOpen, deleteTaskModalIsOpen, setDeleteTaskModalIsOpen, selectTaskModalIsOpen, setSelectTaskModalIsOpen }}>
           { children }
         </TaskContext.Provider>
       )

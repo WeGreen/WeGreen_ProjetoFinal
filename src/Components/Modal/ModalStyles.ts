@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const StyledOverlay = styled.div`
     inset: 0;
-    background: rgba(18, 18, 20, 0.5);
+    background: rgba(18, 18, 20, 0.0);
     position: absolute;
 `
 
@@ -20,6 +20,7 @@ export const StyledDialog = styled.div`
     transform: translate(-50%);
     display: flex;
     flex-direction: column;
+    z-index: 1;
 
     @media (max-width: 420px){
         width: 90%;

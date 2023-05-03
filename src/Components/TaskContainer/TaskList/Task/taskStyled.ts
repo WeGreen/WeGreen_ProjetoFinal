@@ -16,6 +16,22 @@ export const StyledTaskCSS = css<IStyledTaskProps>`
 
     cursor: pointer;
 
+    .setButton__color{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 25px;
+    }
+
+    figure{
+        height: 25px;
+    }
+
+    img{
+        height: 25px;
+        width: 25px;
+    }
+
     .check__figure{
 
         width: 50px;

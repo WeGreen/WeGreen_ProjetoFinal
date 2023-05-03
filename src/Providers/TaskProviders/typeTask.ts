@@ -1,3 +1,5 @@
+import { Dispatch, SetStateAction } from "react";
+
 export interface ITasksProviderProps{
     children: React.ReactNode;
 }
@@ -18,5 +20,11 @@ export interface ITasks{
 export interface ITasksContext{
     allListTasks: ITasks[],
     createTaskModalIsOpen: boolean,
-    setCreateTaskModalIsOpen: boolean,
+    setCreateTaskModalIsOpen: Dispatch<SetStateAction<boolean>>,
+    editTaskModalIsOpen: boolean,
+    setEditTaskModalIsOpen: Dispatch<SetStateAction<boolean>>,
+    deleteTaskModalIsOpen: boolean,
+    setDeleteTaskModalIsOpen: Dispatch<SetStateAction<boolean>>,
+    selectTaskModalIsOpen: boolean,
+    setSelectTaskModalIsOpen: Dispatch<SetStateAction<boolean>>,
 }

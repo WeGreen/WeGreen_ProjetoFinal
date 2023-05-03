@@ -66,7 +66,7 @@ export const deletePostRequest = (postId: TPostId) => {
 
 export const createTaskRequest = (formData: TCreateTaskFormValues) => {
 /*     const userToken = localStorage.getItem( "@wegreen:usertoken" ) */
-    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvYW9AbWFpbC5jb20iLCJpYXQiOjE2ODMwNjYwNzAsImV4cCI6MTY4MzA2OTY3MCwic3ViIjoiNSJ9.t2VZbT0ajSSXy3lmZb9_PFYNzwU3c_m4Ox6cLwrfINA"
+    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvYW9AbWFpbC5jb20iLCJpYXQiOjE2ODMxMjIyMDAsImV4cCI6MTY4MzEyNTgwMCwic3ViIjoiNSJ9.IW0vkbwXRU8RnOHIfxzpzcGOB_sepmBN4P-Vt59sakw"
     
     return api.post("/tasks", formData, {
         headers: {
