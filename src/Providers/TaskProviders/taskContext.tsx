@@ -6,7 +6,7 @@ export const TaskContext = createContext( {} as ITasksContext)
 
 export const TaskProviders = ( { children }: ITasksProviderProps ) => {
     const [ allListTasks, setAllListTasks ] = useState<ITasks[]>([]);
-    const userToken = localStorage.getItem( "@wegreen:userId" )
+    const userToken = localStorage.getItem( "@wegreen:token" )
 
     useEffect(() => {
       async function loadingTask(){
@@ -21,7 +21,9 @@ export const TaskProviders = ( { children }: ITasksProviderProps ) => {
           console.log(error);
         }
       }
-      loadingTask()
+      if(userToken){
+        loadingTask()
+      }
     },[]);
 
     return(
