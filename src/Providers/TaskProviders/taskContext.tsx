@@ -12,10 +12,9 @@ export const TaskProviders = ( { children }: ITasksProviderProps ) => {
     const [ deleteTaskModalIsOpen, setDeleteTaskModalIsOpen ] = useState(false);
     const [ selectTaskModalIsOpen, setSelectTaskModalIsOpen ] = useState(false);
     const [ selectTask, setSelectTask ] = useState<ITasks[]>([]);
-    const userToken = localStorage.getItem( "@wegreen:token" )
     
-
     useEffect(() => {
+      const userToken = localStorage.getItem( "@wegreen:token" )
       async function loadingTask(){
         try {
           const { data } = await api.get<IUser[]>( '/tasks', {
@@ -29,13 +28,11 @@ export const TaskProviders = ( { children }: ITasksProviderProps ) => {
         }
       }
 
-      loadingTask()
-    },[createTaskModalIsOpen]);
-
       if(userToken){
         loadingTask()
       }
-    },[]);
+
+    },[createTaskModalIsOpen]);
 
     return(
         <TaskContext.Provider value={{ allListTasks, createTaskModalIsOpen, setCreateTaskModalIsOpen, editTaskModalIsOpen, setEditTaskModalIsOpen, 
