@@ -14,6 +14,7 @@ type TCreateTaskModalProps = {
 }
 
 type tUserId = number
+//@TODO pegar tipagem do provider
 
 
 export const CreateTaskModal = ({isOpen, onClose }: TCreateTaskModalProps) => {
@@ -45,7 +46,7 @@ export const CreateTaskModal = ({isOpen, onClose }: TCreateTaskModalProps) => {
                 </StyledPostTitleContainer>
 
                 <StyledModalForm onSubmit={handleSubmit(onSubmit)}>
-                    <Input label="Tarefa" placeholder="Digite a tarefa aqui." {...register("title")} type="text" error={errors?.content?.message} />
+                    <Input label="Tarefa" placeholder="Digite a tarefa aqui." {...register("title")} type="text" error={errors?.title?.message} />
 
                     <StyledModalButtonsContainer>
                         <StyledButtonPurple onClick={onClose}>Cancelar</StyledButtonPurple>

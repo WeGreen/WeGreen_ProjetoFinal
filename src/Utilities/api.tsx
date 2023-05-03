@@ -1,6 +1,7 @@
 import axios from "axios"
 import { TCreatePostFormValues } from "../Components/Modal/CreatePostModal/CreatePostSchema";
 import { TCreateTaskFormValues } from "../Components/Modal/TaskModals/CreateTaskModal/CreateTaskSchema";
+import { ITasks } from "../Providers/TaskProviders/typeTask";
 
 export type TPost = {
     title: string,
@@ -11,7 +12,7 @@ export type TPost = {
 
 type TPostId = number;
 
-const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImphbmljZUBtYWlsLmNvbSIsImlhdCI6MTY4MzA0MzU3OSwiZXhwIjoxNjgzMDQ3MTc5LCJzdWIiOiI0In0.qnX5EMBQKeDG0bHTDdL74bl-E9kci8HY6JQC_Bd6sxQ" //@TODO get token from localStorage
+const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImphbmljZUBtYWlsLmNvbSIsImlhdCI6MTY4MzA3MTg4MywiZXhwIjoxNjgzMDc1NDgzLCJzdWIiOiIyIn0.FkNKX14g7rfPistTet8eDuwLcnipY0JVaJ8Lpf-QQ6w" //@TODO get token from localStorage or context
 
 export const api = axios.create({
     baseURL: "http://localhost:3333",
@@ -72,3 +73,21 @@ export const createTaskRequest = (formData: TCreateTaskFormValues) => {
 })
 }
 
+export const editTaskRequest = (task: ITasks) => {
+
+    console.log(task)
+    return api.put(`/tasks/${task.id}`, task, {
+        headers: {
+            "Authorization": `Bearer ${token}`
+        }
+})
+}
+
+export const deleteTaskRequest = (taskId: number) => {
+
+    return api.delete(`/tasks/${taskId}`, {
+        headers: {
+            "Authorization": `Bearer ${token}`
+        }
+})
+}
