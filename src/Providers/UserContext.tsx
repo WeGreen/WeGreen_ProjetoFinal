@@ -3,6 +3,7 @@ import { TLoginValues } from "../Pages/LoginSchema";
 import { toast } from "react-toastify";
 import { api } from "../Utilities/api";
 import { TSignupValues } from "../Pages/SignupSchema";
+import { useNavigate } from "react-router-dom";
 
 interface UserProviderProps {
   children: React.ReactNode;
@@ -27,6 +28,7 @@ export const UserContext = createContext({} as UserContextProps);
 export const UserProvider = ({ children }: UserProviderProps) => {
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState(undefined);
+  const navigate = useNavigate();
 
   const login = async (userData: TLoginValues) => {
     setLoading(true);
@@ -37,6 +39,7 @@ export const UserProvider = ({ children }: UserProviderProps) => {
       localStorage.setItem("@wegreen:userId", JSON.stringify(res.data.user));
 
       setUser(res.data.user);
+      navigate("/")
     } catch (error: any) {
       console.log(error);
       toast.error(error);
@@ -82,9 +85,13 @@ export const UserProvider = ({ children }: UserProviderProps) => {
 
         if (user) {
           setUser(JSON.parse(user));
+          navigate("/")
+        } else {
+          throw new Error();
         }
       } catch (error: any) {
         console.log(error);
+        navigate("/login")
       } finally {
         setLoading(false);
       }
