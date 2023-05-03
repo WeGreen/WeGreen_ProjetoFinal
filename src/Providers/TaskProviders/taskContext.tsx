@@ -32,7 +32,7 @@ export const TaskProviders = ( { children }: ITasksProviderProps ) => {
         loadingTask()
       }
 
-    },[createTaskModalIsOpen]);
+    },[allListTasks]);
 
     return(
         <TaskContext.Provider value={{ allListTasks, createTaskModalIsOpen, setCreateTaskModalIsOpen, editTaskModalIsOpen, setEditTaskModalIsOpen, 

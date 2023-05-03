@@ -13,6 +13,7 @@ export interface IUser{
 }
 
 export interface ITasks{
+    userId: any;
     id: number
     title: string,
 }

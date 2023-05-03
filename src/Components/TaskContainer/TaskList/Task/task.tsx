@@ -20,6 +20,7 @@ export const Task = ( { task }: ITasksProviderProps ) => {
     const image = checkValue ? Check : NoCheck
     const color = checkValue ? colorCheck : colorNoCheck
 
+
     return(
 
         <>
@@ -42,7 +43,7 @@ export const Task = ( { task }: ITasksProviderProps ) => {
 
                 </div>
 
-                <div className="check__edit" onClick={() => setSelectTaskModalIsOpen(true)}>
+                <div className="check__edit" onClick={(event) => console.log(event) /* setSelectTaskModalIsOpen(true) */}>
                     <p> ... </p>
                 </div>
 

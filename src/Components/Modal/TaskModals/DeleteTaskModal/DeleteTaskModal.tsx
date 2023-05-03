@@ -1,9 +1,11 @@
+import { toast } from "react-toastify";
 import { ITasks } from "../../../../Providers/TaskProviders/typeTask";
 import { StyledButtonPurple } from "../../../../Styles/StyledButtons";
 import { deleteTaskRequest } from "../../../../Utilities/api";
 import { CloseModalButton } from "../../ModalFragments/CloseModalButton/CloseModalButton";
 import { StyledConfirmationSpan, StyledDeleteConfirmationContainer, StyledDialog, StyledOverlay,StyledPostTitleContainer } from "../../ModalStyles";
-
+import { useContext } from "react";
+import { TaskContext } from "../../../../Providers/TaskProviders/taskContext";
 
 interface TDeleteTaskModalProps {
     isOpen: boolean;
@@ -12,15 +14,21 @@ interface TDeleteTaskModalProps {
     task: ITasks
 }
 
-
 export const DeleteTaskModal = ({ isOpen, onClose, task }: TDeleteTaskModalProps) => {
+
+    const { setSelectTaskModalIsOpen } = useContext( TaskContext )
+
+    const closeModal = () => {
+        onClose();
+        setSelectTaskModalIsOpen(false)
+    }
 
     const deleteTask = async() => {
         try {
             deleteTaskRequest(task.id);
             console.log("post deletado");
-            //@TODO adicionar toast de sucesso
-            onClose;
+            toast("Post deletado com sucesso.")
+            closeModal();
         } catch (error) {
             console.log("erro", error)
             //@TODO adicionar toast de erro

@@ -8,6 +8,8 @@ import { StyledButtonGreen, StyledButtonPurple } from "../../../../Styles/Styled
 import { ITasks } from "../../../../Providers/TaskProviders/typeTask";
 import { EditTaskSchema, TEditTaskFormValues } from "./EditTaskSchema";
 import { editTaskRequest } from "../../../../Utilities/api";
+import { useContext } from "react";
+import { TaskContext } from "../../../../Providers/TaskProviders/taskContext";
 
 type TEditTaskModalProps = {
     isOpen: boolean;
@@ -16,28 +18,37 @@ type TEditTaskModalProps = {
 }
 
 export const EditTaskModal = ({isOpen, onClose, task }: TEditTaskModalProps) => {
+    
+    const { setSelectTaskModalIsOpen } = useContext( TaskContext )
 
+    
     const { register, handleSubmit, formState:{ errors } } = useForm<TEditTaskFormValues>({
         resolver: zodResolver(EditTaskSchema),
         defaultValues: {
             title: task.title,
         }
     })
+
+    const closeModal = () => {
+        onClose();
+        setSelectTaskModalIsOpen(false)
+    }
     
     const onSubmit: SubmitHandler<TEditTaskFormValues> = async (formData) => {
-
-        console.log(formData)
+        const {id, userId} = task
+        
         try {
            const response =  await editTaskRequest({
             ...formData,
-            id: task.id,
-            userId: task.userId
+            id: id,
+            userId: userId
         });
            console.log('sucesso', response)
-           onClose()
+           closeModal()
         } catch (error) {
-            console.log('erro', errors)
+            console.log('erro', error)
         }
+
     }
 
     if(!isOpen) return <></>;
