@@ -8,6 +8,7 @@ import { StyledModalForm } from "../ModalFormStyles";
 import { Input } from "../ModalInputs/ModalInput";
 import { Textarea } from "../ModalInputs/ModalTextArea";
 import { StyledButtonGreen, StyledButtonPurple } from "../../../Styles/StyledButtons";
+import { toast } from "react-toastify";
 
 type TEditPostModalProps = {
     isOpen: boolean;
@@ -31,10 +32,9 @@ export const EditPostModal = ({isOpen, onClose, post }: TEditPostModalProps) => 
             id: post.id,
             userId: post.userId
         });
-           console.log('sucesso', response)
-           onClose()
+           onClose();
         } catch (error) {
-            console.log('erro', errors)
+            toast.error("Falha ao editar a postagem.")
         }
     }
 
