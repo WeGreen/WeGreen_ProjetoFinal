@@ -9,10 +9,7 @@ export const LoginSchema = z.object({
        .email('Digite um e-mail válido.'),
     password: z
       .string()
-      .min(7, 'A senha é obrigatória e precisa de no mínimo 7 caracteres')
-      .regex(/(?=.*?[A-Z])/, 'É necessário ao menos uma letra maiúscula')
-      .regex(/(?=.*?[a-z])/, 'É necessário ao menos uma letra minúscula')
-      .regex(/(?=.*?[0-9])/, 'É necessário pelo menos um número'), 
+      .nonempty("Digite a senha."),
   })
 
   export type TLoginValues = z.infer<typeof LoginSchema>;

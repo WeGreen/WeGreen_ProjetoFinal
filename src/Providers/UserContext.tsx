@@ -61,8 +61,9 @@ export const UserProvider = ({ children }: UserProviderProps) => {
       localStorage.setItem("@wegreen:token", res.data.accessToken);
       localStorage.setItem("@wegreen:userId", JSON.stringify(res.data.user));
       setUser(res.data.user);
+      navigate("/login")
     } catch (error) {
-      toast.error("Verifique os campos se foram prenenchido corretamente e tente novamente!");
+      toast.error("Verifique os campos se foram preenchidos corretamente e tente novamente!");
     } finally {
       setLoading(false);
     }
