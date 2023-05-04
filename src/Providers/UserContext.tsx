@@ -27,7 +27,7 @@ export const UserContext = createContext({} as UserContextProps);
 
 export const UserProvider = ({ children }: UserProviderProps) => {
   const [loading, setLoading] = useState(true);
-  const [user, setUser] = useState(undefined);
+  const [user, setUser] = useState<IUser | null >(null);
   const navigate = useNavigate();
 
   const login = async (userData: TLoginValues) => {

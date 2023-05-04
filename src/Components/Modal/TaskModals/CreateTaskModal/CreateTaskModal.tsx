@@ -7,31 +7,30 @@ import { StyledModalForm} from "../../ModalFormStyles";
 import { Input } from "../../ModalInputs/ModalInput";
 import { CreateTaskSchema, TCreateTaskFormValues } from "./CreateTaskSchema";
 import { createTaskRequest } from "../../../../Utilities/api";
+import { useContext } from "react";
+import { UserContext } from "../../../../Providers/UserContext";
+import { toast } from "react-toastify";
 
 type TCreateTaskModalProps = {
     isOpen: boolean;
     onClose: () => void;
 }
 
-type tUserId = number
-//@TODO pegar tipagem do provider
-
-
 export const CreateTaskModal = ({isOpen, onClose }: TCreateTaskModalProps) => {
+    const { user } = useContext(UserContext);
+    const userId = user?.id; 
 
-    const userId: tUserId = 6 // @TODO Pegar do provider
-
-    const { register, handleSubmit, formState:{errors}} = useForm<TCreateTaskFormValues>({
+    const { register, handleSubmit, formState:{errors}, reset} = useForm<TCreateTaskFormValues>({
         resolver: zodResolver(CreateTaskSchema),
     })
 
     const onSubmit: SubmitHandler<TCreateTaskFormValues> = async (formData) => {
         try {
-           const response =  await createTaskRequest({...formData, userId });
-           console.log("tarefa criada", response)
-           onClose()
+           const response =  await createTaskRequest(formData, userId);
+           onClose();
+           reset();
         } catch (error) {
-            console.log("erro",errors)
+            toast.error("Falha ao criar tarefa");
         }
     }
 

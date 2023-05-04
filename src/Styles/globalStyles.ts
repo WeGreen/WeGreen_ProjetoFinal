@@ -38,12 +38,4 @@ export const GlobalStyle = createGlobalStyle`
         font-weight: 400;
         color: var(--black);
     }
-
-
-
-
-
-
-  
-
 `

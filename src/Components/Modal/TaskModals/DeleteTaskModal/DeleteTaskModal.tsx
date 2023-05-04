@@ -26,12 +26,10 @@ export const DeleteTaskModal = ({ isOpen, onClose, selectTask }: TDeleteTaskModa
     const deleteTask = async() => {
         try {
             deleteTaskRequest(selectTask.id);
-            console.log("post deletado");
-            toast("Post deletado com sucesso.")
+            toast.success("Tarefa excluída com sucesso");
             closeModal();
         } catch (error) {
-            console.log("erro", error)
-            //@TODO adicionar toast de erro
+            toast.error("Falha ao ecluir a tarefa");
         }
     }
 
