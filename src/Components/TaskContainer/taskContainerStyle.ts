@@ -3,11 +3,11 @@ import styled from "styled-components"
 export const StyledTaskContainer = styled.div`
     height: 100vw;
     width: 400px;
+    max-width: 90%;
     display: flex;
     flex-direction: column;
-    gap:15px;
-
-    margin-top: 15px;
+    gap: 15px;
+    margin: 15px auto;
 
 `
 

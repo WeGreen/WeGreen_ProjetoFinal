@@ -16,7 +16,7 @@ interface IUser {
 }
 
 interface UserContextProps {
-  user: IUser | undefined;
+  user: IUser | null;
   login: (userData: TLoginValues) => Promise<void>;
   register: (userData: TSignupValues) => Promise<void>;
   logout: () => void;
@@ -40,9 +40,8 @@ export const UserProvider = ({ children }: UserProviderProps) => {
 
       setUser(res.data.user);
       navigate("/")
-    } catch (error: any) {
-      console.log(error);
-      toast.error(error);
+    } catch (error) {
+      toast.error("Verifique seu e-mail e sua senha e tente novamente!");
     } finally {
       setLoading(false);
     }
@@ -50,6 +49,7 @@ export const UserProvider = ({ children }: UserProviderProps) => {
 
   const register = async (formData: TSignupValues) => {
     setLoading(true);
+    console.log(formData)
     try {
       const userData = {
         name: formData.name,
@@ -61,9 +61,8 @@ export const UserProvider = ({ children }: UserProviderProps) => {
       localStorage.setItem("@wegreen:token", res.data.accessToken);
       localStorage.setItem("@wegreen:userId", JSON.stringify(res.data.user));
       setUser(res.data.user);
-    } catch (error: any) {
-      console.log(error);
-      toast.error(error);
+    } catch (error) {
+      toast.error("Verifique os campos se foram prenenchido corretamente e tente novamente!");
     } finally {
       setLoading(false);
     }
@@ -73,7 +72,7 @@ export const UserProvider = ({ children }: UserProviderProps) => {
     localStorage.removeItem("@wegreen:userId");
     localStorage.removeItem("@wegreen:token");
 
-    setUser(undefined);
+    setUser(null);
     return;
   };
 
@@ -89,9 +88,8 @@ export const UserProvider = ({ children }: UserProviderProps) => {
         } else {
           throw new Error();
         }
-      } catch (error: any) {
-        console.log(error);
-        navigate("/login")
+      } catch (error) {
+        console.log(error)
       } finally {
         setLoading(false);
       }

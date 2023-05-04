@@ -32,8 +32,12 @@ gap: 32px;
 
 export const LogoContainer = styled.div`
 display: none;
+img{
+   height: 400px;
+
+}
 @media (min-width:1024px){
-   padding-right: 70px;
+   padding-right: 30px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -107,6 +111,18 @@ export const RedirectContainer = styled.div<RedirectProps>`
     font-size: 18px;
     color: #495057;
  }
+
+ @media (max-width:1024px){
+   width: 100%;
+ text-align: center;
+ padding: 32px;
+ display: flex;
+ flex-direction: ${({type}) => type ==='LOGIN' ? 'column' : 'column'};
+ justify-content: ${({type}) => type ==='LOGIN' ? 'center' : 'space-between'};
+ 
+ align-items: center;
+ gap: 24px;
+}
 
 `
 

@@ -9,10 +9,9 @@ export const StyledOverlay = styled.div`
 
 export const StyledDialog = styled.div`
     width: 70%;
-    max-width: 200px;
+    max-width: 160px;
     padding: 20px 30px;
     background-color: var(--white);
-    /* gap: 20px; */
     border-radius: 10px;
     position: absolute;
     margin: 0 auto;
@@ -21,6 +20,29 @@ export const StyledDialog = styled.div`
     transform: translate(-50%);
     display: flex;
     flex-direction: column;
+
+    p{
+        cursor: pointer;
+
+        height: 40px;
+        width: 100px;
+
+        border: 1px solid var(--green1);
+        border-radius: 8px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        margin: 10px 0;
+        color: var(--green1);
+
+        :hover{
+            color: var(--white);
+            border: 1px solid var(--green2);
+            background-color: var(--green2);
+        }
+    }
 
     @media (max-width: 420px){
         width: 90%;
@@ -37,6 +59,7 @@ export const StyledCloseModalButton = styled.button`
     width: 38px;
     height: 38px;
     border-radius: 4px;
+    margin-left: 120px;
 
     &:hover {
         border: 2px solid var(--purple1);

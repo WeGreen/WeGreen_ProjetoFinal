@@ -1,11 +1,12 @@
 
+import { UseFormRegisterReturn } from 'react-hook-form';
 import { Container, Input, Legend } from './formInputStyle'
 
 interface InputProps{
- id: string;
- type:string;
+  id: string;
+  type:string;
   label: string;
-  register:any;
+  register: any/* UseFormRegisterReturn */;
   placeholder: string;
   error:string | undefined;
 }

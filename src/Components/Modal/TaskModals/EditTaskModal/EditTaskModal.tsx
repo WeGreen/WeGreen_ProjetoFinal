@@ -5,28 +5,31 @@ import { CloseModalButton } from "../../ModalFragments/CloseModalButton/CloseMod
 import { StyledModalForm } from "../../ModalFormStyles";
 import { Input } from "../../ModalInputs/ModalInput";
 import { StyledButtonGreen, StyledButtonPurple } from "../../../../Styles/StyledButtons";
-import { ITasks } from "../../../../Providers/TaskProviders/typeTask";
 import { EditTaskSchema, TEditTaskFormValues } from "./EditTaskSchema";
 import { editTaskRequest } from "../../../../Utilities/api";
 import { useContext } from "react";
 import { TaskContext } from "../../../../Providers/TaskProviders/taskContext";
-import { UserContext } from "../../../../Providers/UserContext";
 import { toast } from "react-toastify";
 
 type TEditTaskModalProps = {
     isOpen: boolean;
     onClose: () => void;
-    selectTask: ITasks;
 }
 
-export const EditTaskModal = ({isOpen, onClose, selectTask }: TEditTaskModalProps) => {
-    const { setSelectTaskModalIsOpen, loadingTask } = useContext( TaskContext )
-    const { user } = useContext(UserContext)
+interface IEditTask extends TEditTaskFormValues {
+     
+    id: number | string,
+    userId: number | string,
+}
 
-    const { register, handleSubmit, formState:{ errors }, reset } = useForm<TEditTaskFormValues>({
+export const EditTaskModal = ({isOpen, onClose }: TEditTaskModalProps) => {
+    const { setSelectTaskModalIsOpen, loadingTask, selectTask } = useContext( TaskContext )
+    const { id, userId, title } = selectTask!
+
+    const { register, handleSubmit, formState:{ errors }, reset } = useForm<IEditTask>({
         resolver: zodResolver(EditTaskSchema),
         defaultValues: {
-            title: selectTask.title,
+            title: title,
         }
     })
 
@@ -36,17 +39,18 @@ export const EditTaskModal = ({isOpen, onClose, selectTask }: TEditTaskModalProp
         setSelectTaskModalIsOpen(false);
     }
     
-    const onSubmit: SubmitHandler<TEditTaskFormValues> = async (formData) => {
-        const {id, userId} = selectTask
+    const onSubmit: SubmitHandler<IEditTask> = async (formData) => {
+
         
         try {
-           const response =  await editTaskRequest({
+           await editTaskRequest({
             ...formData,
             id,
             userId,
         });
            closeModal()
            reset()
+           toast.success("Tarefa editada com sucesso.");
         } catch (error) {
             toast.error("Falha ao editar a tarefa.");
         }

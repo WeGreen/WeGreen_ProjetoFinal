@@ -4,10 +4,12 @@ import { StyledHeaderTask, StyledTaskContainer, StyledUserTask,} from "./taskCon
 import { TaskList } from "./TaskList/taskList";
 import { TaskContext } from "../../Providers/TaskProviders/taskContext";
 import { CreateTaskModal } from "../../Components/Modal/TaskModals/CreateTaskModal/CreateTaskModal";
+import { UserContext } from "../../Providers/UserContext";
 
 export const TaskContainer = () => {
 
     const { createTaskModalIsOpen, setCreateTaskModalIsOpen } = useContext( TaskContext )
+    const { user } = useContext( UserContext )
 
     return(
         <StyledTaskContainer>
@@ -15,7 +17,7 @@ export const TaskContainer = () => {
             <CreateTaskModal isOpen={createTaskModalIsOpen} onClose={() => setCreateTaskModalIsOpen(false)}/>
 
             <StyledUserTask>
-                <h3>Olá, Marlene</h3>
+                <h3>Olá, {user?.name}</h3>
                 <p>Condomínio Solar Harmonia</p>
             </StyledUserTask>
 
