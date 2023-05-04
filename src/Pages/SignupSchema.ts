@@ -12,7 +12,7 @@ export const SignupSchema = z.object({
     .regex(/(?=.*?[A-Z])/, 'É necessário ao menos uma letra maiúscula')
     .regex(/(?=.*?[a-z])/, 'É necessário ao menos uma letra minúscula')
     .regex(/(?=.*?[0-9])/, 'É necessário pelo menos um número')
-    .regex(/(?=.*?[!}{,.^?~=+\-_\/*\-+.\|])/, 'É necessário pelo menos uma caractere espacial'),
+    .regex(/(?=.*?[!}{,.^?~=+\-_*\-+.|])/, 'É necessário pelo menos uma caractere espacial'),
     confirmPassword : z.string().min(1, 'A confirmação de senha é obrigatória.'),
 })
 

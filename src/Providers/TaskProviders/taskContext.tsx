@@ -1,8 +1,8 @@
 import { createContext, useEffect, useState } from "react";
 import { api } from "../../Utilities/api";
-import { ITasks, ITasksContext, ITasksProviderProps, IUser } from "./typeTask";
+import { ITasks, ITasksContext, ITasksProviderProps } from "./typeTask";
 
-export const TaskContext = createContext( {} as ITasksContext)
+export const TaskContext = createContext<ITasksContext>( {} as ITasksContext)
 
 export const TaskProviders = ( { children }: ITasksProviderProps ) => {
 
@@ -11,7 +11,7 @@ export const TaskProviders = ( { children }: ITasksProviderProps ) => {
     const [ editTaskModalIsOpen, setEditTaskModalIsOpen ] = useState(false);
     const [ deleteTaskModalIsOpen, setDeleteTaskModalIsOpen ] = useState(false);
     const [ selectTaskModalIsOpen, setSelectTaskModalIsOpen ] = useState(false);
-    const [ selectTask, setSelectTask ] = useState<ITasks[]>([]);
+    const [ selectTask, setSelectTask ] = useState<ITasks | undefined | null >(null);
     const [ currentId, setCurrentId ] = useState("");
     
     const userToken = localStorage.getItem( "@wegreen:token" )

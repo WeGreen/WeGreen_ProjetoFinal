@@ -28,10 +28,11 @@ export const CreateTaskModal = ({isOpen, onClose }: TCreateTaskModalProps) => {
 
     const onSubmit: SubmitHandler<TCreateTaskFormValues> = async (formData) => {
         try {
-           const response =  await createTaskRequest(formData, userId);
+           await createTaskRequest(formData, userId);
            onClose();
            reset();
            loadingTask();
+           toast.success("Tarefa criada com sucesso.");
         } catch (error) {
             toast.error("Falha ao criar tarefa");
         }

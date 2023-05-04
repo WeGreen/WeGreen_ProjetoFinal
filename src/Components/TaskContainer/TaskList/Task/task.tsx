@@ -9,10 +9,9 @@ import { ModalOfChoice } from "../../../Modal/TaskModals/ModalOfChoice/modalOfCh
 
 export interface ITasksProviderProps{
     task: ITasks;
-    selectTask: ITasks;
 }
 
-export const Task = ( { task,  selectTask }: ITasksProviderProps ) => {
+export const Task = ( { task }: ITasksProviderProps ) => {
     const {selectTaskModalIsOpen, setSelectTaskModalIsOpen, setCurrentId } = useContext( TaskContext )
     const [ checkValue, setCheckValue] = useState(false)
 
@@ -23,14 +22,16 @@ export const Task = ( { task,  selectTask }: ITasksProviderProps ) => {
     const color = checkValue ? colorCheck : colorNoCheck
 
     const execution = ( id: number ) => {
+        const conversion = id.toString()
+
         setSelectTaskModalIsOpen(true)
-        setCurrentId( id )
+        setCurrentId( conversion ) 
     }
 
     return(
 
         <>
-            <ModalOfChoice isOpen={selectTaskModalIsOpen} onClose={() => setSelectTaskModalIsOpen(false)} task={task} selectTask={selectTask} />
+            <ModalOfChoice isOpen={selectTaskModalIsOpen} onClose={() => setSelectTaskModalIsOpen(false)} />
         
             <StyledTask $buttonStyle={color} >
 

@@ -25,12 +25,20 @@ export const StyledHeaderContainer = styled.header`
             font-weight: 500;
             }
             .logo_img{
-                height: 70px;
-                width: 70px;
+                height: 0px;
+                width: 0px;
                 margin-right: 20px;
             }
         }
 
+        @media (min-width:425px){
+            div.title_container{
+                .logo_img{
+                    height: 70px;
+                    width: 70px;
+                }
+            }
+        }
        
         button.button_logout{
             background-color: transparent;

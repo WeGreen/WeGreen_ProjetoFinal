@@ -1,19 +1,18 @@
-import { SetStateAction, useContext } from "react"
-import { StyledCloseModalButton, StyledDialog, StyledOverlay } from "./modalOfChoiceStyle"
+import { useContext } from "react"
+import { StyledDialog, StyledOverlay } from "./modalOfChoiceStyle"
 import { TaskContext } from "../../../../Providers/TaskProviders/taskContext"
 import { EditTaskModal } from "../EditTaskModal/EditTaskModal"
 import { DeleteTaskModal } from "../DeleteTaskModal/DeleteTaskModal"
-import { ITasks } from "../../../../Providers/TaskProviders/typeTask"
+
+import { CloseModalButton } from "../../ModalFragments/CloseModalButton/CloseModalButton"
 
 type TChoseTaskModalProps = {
     isOpen: boolean;
     onClose: () => void;
-    task: ITasks;
-    selectTask: ITasks;
 }
 
 
-export const ModalOfChoice = ({isOpen, onClose, selectTask }: TChoseTaskModalProps) => {
+export const ModalOfChoice = ({ isOpen, onClose }: TChoseTaskModalProps) => {
     const { editTaskModalIsOpen, setEditTaskModalIsOpen, deleteTaskModalIsOpen, setDeleteTaskModalIsOpen } = useContext( TaskContext )
 
     if(!isOpen) return <></>;
@@ -21,13 +20,11 @@ export const ModalOfChoice = ({isOpen, onClose, selectTask }: TChoseTaskModalPro
     return(
         <>
             <StyledOverlay></StyledOverlay>
-            <EditTaskModal isOpen={editTaskModalIsOpen} onClose={() => setEditTaskModalIsOpen(false)} selectTask={selectTask}  />
-            <DeleteTaskModal isOpen={deleteTaskModalIsOpen} onClose={() => setDeleteTaskModalIsOpen(false)} selectTask={selectTask} setDeleteTaskIsOpen={function (value: SetStateAction<boolean>): void {
-                throw new Error("Function not implemented.")
-            } }  />
+            <EditTaskModal isOpen={editTaskModalIsOpen} onClose={() => setEditTaskModalIsOpen(false)} />
+            <DeleteTaskModal isOpen={deleteTaskModalIsOpen} onClose={() => setDeleteTaskModalIsOpen(false)} />
 
             <StyledDialog>
-                <StyledCloseModalButton onClick={onClose} />
+                <CloseModalButton onClick={onClose} />
 
                 <div>
                     <p onClick={() => setEditTaskModalIsOpen(true)} > Editar </p>
