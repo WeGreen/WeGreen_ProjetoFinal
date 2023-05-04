@@ -18,7 +18,7 @@ type tUserId = number
 
 
 export const CreatePostModal = ({isOpen, onClose }: TCreatePostModalProps) => {
-    const userId: tUserId = 4 // @TODO Pegar do provider
+    const userId: tUserId = localStorage.getItem('@TOKEN') //Continua errado, mozão
 
     const { register, handleSubmit, formState:{errors}} = useForm<TCreatePostFormValues>({
         resolver: zodResolver(CreatePostSchema),
