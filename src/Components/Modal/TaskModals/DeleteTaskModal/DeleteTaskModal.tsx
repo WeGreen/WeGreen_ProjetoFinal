@@ -10,11 +10,11 @@ import { TaskContext } from "../../../../Providers/TaskProviders/taskContext";
 interface TDeleteTaskModalProps {
     isOpen: boolean;
     onClose: () => void;
-    setDeleteTaskisOpen: (value: React.SetStateAction<boolean>) => void;
-    task: ITasks
+    setDeleteTaskIsOpen: (value: React.SetStateAction<boolean>) => void;
+    selectTask: ITasks;
 }
 
-export const DeleteTaskModal = ({ isOpen, onClose, task }: TDeleteTaskModalProps) => {
+export const DeleteTaskModal = ({ isOpen, onClose, selectTask }: TDeleteTaskModalProps) => {
 
     const { setSelectTaskModalIsOpen } = useContext( TaskContext )
 
@@ -25,7 +25,7 @@ export const DeleteTaskModal = ({ isOpen, onClose, task }: TDeleteTaskModalProps
 
     const deleteTask = async() => {
         try {
-            deleteTaskRequest(task.id);
+            deleteTaskRequest(selectTask.id);
             console.log("post deletado");
             toast("Post deletado com sucesso.")
             closeModal();

@@ -13,8 +13,8 @@ export interface IUser{
 }
 
 export interface ITasks{
-    userId: any;
-    id: number
+    userId: string;
+    id: number,
     title: string,
 }
 
@@ -30,4 +30,6 @@ export interface ITasksContext{
     setSelectTaskModalIsOpen: Dispatch<SetStateAction<boolean>>,
     selectTask: ITasks[],
     setSelectTask: Dispatch<SetStateAction<ITasks[]>>,
+    currentId: string;
+    setCurrentId: Dispatch<SetStateAction<number>>;
 }

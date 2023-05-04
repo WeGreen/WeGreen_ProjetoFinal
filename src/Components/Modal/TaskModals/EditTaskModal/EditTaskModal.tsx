@@ -14,18 +14,16 @@ import { TaskContext } from "../../../../Providers/TaskProviders/taskContext";
 type TEditTaskModalProps = {
     isOpen: boolean;
     onClose: () => void;
-    task: ITasks;
+    selectTask: ITasks;
 }
 
-export const EditTaskModal = ({isOpen, onClose, task }: TEditTaskModalProps) => {
-    
-    const { setSelectTaskModalIsOpen } = useContext( TaskContext )
-
+export const EditTaskModal = ({isOpen, onClose, selectTask }: TEditTaskModalProps) => {
+        const { setSelectTaskModalIsOpen } = useContext( TaskContext )
     
     const { register, handleSubmit, formState:{ errors } } = useForm<TEditTaskFormValues>({
         resolver: zodResolver(EditTaskSchema),
         defaultValues: {
-            title: task.title,
+            title: selectTask.title,
         }
     })
 
@@ -35,7 +33,7 @@ export const EditTaskModal = ({isOpen, onClose, task }: TEditTaskModalProps) => 
     }
     
     const onSubmit: SubmitHandler<TEditTaskFormValues> = async (formData) => {
-        const {id, userId} = task
+        const {id, userId} = selectTask
         
         try {
            const response =  await editTaskRequest({

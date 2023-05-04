@@ -69,7 +69,7 @@ export const createTaskRequest = (formData: TCreateTaskFormValues) => {
 export const editTaskRequest = (task: ITasks) => {
     const token = localStorage.getItem( "@wegreen:token" )
 
-    return api.put(`/tasks/${task.userId}`, task, {
+    return api.put(`/tasks/${task.id}`, task, {
         headers: {
             "Authorization": `Bearer ${token}`
         }

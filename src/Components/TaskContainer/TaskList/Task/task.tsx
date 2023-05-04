@@ -5,26 +5,32 @@ import { useContext, useState } from "react";
 import { ITasks } from "../../../../Providers/TaskProviders/typeTask";
 import { TaskContext } from "../../../../Providers/TaskProviders/taskContext";
 
-import { ModalOfChose } from "./ModalOfChoice/modalOfChoice";
+import { ModalOfChoice } from "../../../Modal/TaskModals/ModalOfChoice/modalOfChoice";
 
 export interface ITasksProviderProps{
     task: ITasks;
+    selectTask: ITasks;
 }
 
-export const Task = ( { task }: ITasksProviderProps ) => {
-    const {selectTaskModalIsOpen, setSelectTaskModalIsOpen } = useContext( TaskContext )
+export const Task = ( { task,  selectTask }: ITasksProviderProps ) => {
+    const {selectTaskModalIsOpen, setSelectTaskModalIsOpen, setCurrentId } = useContext( TaskContext )
     const [ checkValue, setCheckValue] = useState(false)
+
     const colorCheck = "done";
     const colorNoCheck = "notDone";
     
     const image = checkValue ? Check : NoCheck
     const color = checkValue ? colorCheck : colorNoCheck
 
+    const execution = ( id: number ) => {
+        setSelectTaskModalIsOpen(true)
+        setCurrentId( id )
+    }
 
     return(
 
         <>
-            <ModalOfChose isOpen={selectTaskModalIsOpen} onClose={() => setSelectTaskModalIsOpen(false)} task={task} />
+            <ModalOfChoice isOpen={selectTaskModalIsOpen} onClose={() => setSelectTaskModalIsOpen(false)} task={task} selectTask={selectTask} />
         
             <StyledTask $buttonStyle={color} >
 
@@ -43,7 +49,7 @@ export const Task = ( { task }: ITasksProviderProps ) => {
 
                 </div>
 
-                <div className="check__edit" onClick={(event) => console.log(event) /* setSelectTaskModalIsOpen(true) */}>
+                <div className="check__edit" onClick={() =>  execution( task.id ) }>
                     <p> ... </p>
                 </div>
 

@@ -12,16 +12,16 @@ export const TaskProviders = ( { children }: ITasksProviderProps ) => {
     const [ deleteTaskModalIsOpen, setDeleteTaskModalIsOpen ] = useState(false);
     const [ selectTaskModalIsOpen, setSelectTaskModalIsOpen ] = useState(false);
     const [ selectTask, setSelectTask ] = useState<ITasks[]>([]);
+    const [ currentId, setCurrentId ] = useState( "" )
     
     useEffect(() => {
       const userToken = localStorage.getItem( "@wegreen:token" )
       async function loadingTask(){
         try {
-          const { data } = await api.get<IUser[]>( '/tasks', {
+          const { data } = await api.get<ITasks[]>( '/tasks', {
           headers:{
             Authorization:`Bearer ${userToken}`
           } } );
-  
           setAllListTasks(data);
         } catch (error) {
           console.log(error);
@@ -36,7 +36,8 @@ export const TaskProviders = ( { children }: ITasksProviderProps ) => {
 
     return(
         <TaskContext.Provider value={{ allListTasks, createTaskModalIsOpen, setCreateTaskModalIsOpen, editTaskModalIsOpen, setEditTaskModalIsOpen, 
-                                      deleteTaskModalIsOpen, setDeleteTaskModalIsOpen, selectTaskModalIsOpen, setSelectTaskModalIsOpen, selectTask, setSelectTask }}>
+                                      deleteTaskModalIsOpen, setDeleteTaskModalIsOpen, selectTaskModalIsOpen, setSelectTaskModalIsOpen, selectTask, setSelectTask,
+                                      currentId, setCurrentId }}>
           { children }
         </TaskContext.Provider>
       )
