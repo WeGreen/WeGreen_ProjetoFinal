@@ -19,7 +19,7 @@ type TEditTaskModalProps = {
     selectTask: ITasks;
 }
 
-export const EditTasktModal = ({isOpen, onClose, selectTask }: TEditTaskModalProps) => {
+export const EditTaskModal = ({isOpen, onClose, selectTask }: TEditTaskModalProps) => {
     const { setSelectTaskModalIsOpen } = useContext( TaskContext )
     const { user } = useContext(UserContext)
 
@@ -42,7 +42,8 @@ export const EditTasktModal = ({isOpen, onClose, selectTask }: TEditTaskModalPro
            const response =  await editTaskRequest({
             ...formData,
             id,
-        }, userId);
+            userId,
+        });
            closeModal()
            reset()
         } catch (error) {
