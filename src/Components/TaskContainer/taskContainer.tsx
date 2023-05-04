@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import Icon__Add from "../../assets/Icon__Add.png"
+import Icon__Add from "../../assets/Add.svg"
 import { StyledHeaderTask, StyledTaskContainer, StyledUserTask,} from "./taskContainerStyle";
 import { TaskList } from "./TaskList/taskList";
 import { TaskContext } from "../../Providers/TaskProviders/taskContext";

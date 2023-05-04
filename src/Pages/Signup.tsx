@@ -18,7 +18,7 @@ export const SignupPage = () => {
     
         const handleRegister: SubmitHandler<TSignupValues> =(formData)=>{
 
-           signup(formData)
+          signup(formData)
         
         }
 

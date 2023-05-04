@@ -1,5 +1,3 @@
-
-import { UseFormRegisterReturn } from 'react-hook-form';
 import { Container, Input, Legend } from './formInputStyle'
 
 interface InputProps{

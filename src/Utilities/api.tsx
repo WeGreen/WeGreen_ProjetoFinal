@@ -15,7 +15,7 @@ type TPostId = number;
 const token = () => localStorage.getItem("@wegreen:token")
 
 export const api = axios.create({
-    baseURL: "http://localhost:3333",
+    baseURL: "https://wegreen-api.onrender.com",
     timeout: 10000,
 });
 

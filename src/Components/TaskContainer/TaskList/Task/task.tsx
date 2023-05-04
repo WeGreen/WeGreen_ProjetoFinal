@@ -1,6 +1,6 @@
 import { StyledTask } from "./taskStyled";
-import NoCheck from "../../../../assets/Icon__NoCheck.png"
-import Check from "../../../../assets/Icon__Check.png"
+import NoCheck from "../../../../assets/NoCheck.svg"
+import Check from "../../../../assets/Check.svg"
 import { useContext, useState } from "react";
 import { ITasks } from "../../../../Providers/TaskProviders/typeTask";
 import { TaskContext } from "../../../../Providers/TaskProviders/taskContext";
