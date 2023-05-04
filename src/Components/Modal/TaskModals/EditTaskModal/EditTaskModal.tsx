@@ -9,36 +9,46 @@ import { ITasks } from "../../../../Providers/TaskProviders/typeTask";
 import { EditTaskSchema, TEditTaskFormValues } from "./EditTaskSchema";
 import { editTaskRequest } from "../../../../Utilities/api";
 import { useContext } from "react";
+import { TaskContext } from "../../../../Providers/TaskProviders/taskContext";
 import { UserContext } from "../../../../Providers/UserContext";
 import { toast } from "react-toastify";
 
 type TEditTaskModalProps = {
     isOpen: boolean;
     onClose: () => void;
-    task: ITasks;
+    selectTask: ITasks;
 }
 
-export const EditTasktModal = ({isOpen, onClose, task }: TEditTaskModalProps) => {
+export const EditTasktModal = ({isOpen, onClose, selectTask }: TEditTaskModalProps) => {
+    const { setSelectTaskModalIsOpen } = useContext( TaskContext )
     const { user } = useContext(UserContext)
 
     const { register, handleSubmit, formState:{ errors }, reset } = useForm<TEditTaskFormValues>({
         resolver: zodResolver(EditTaskSchema),
         defaultValues: {
-            title: task.title,
+            title: selectTask.title,
         }
     })
+
+    const closeModal = () => {
+        onClose();
+        setSelectTaskModalIsOpen(false)
+    }
     
     const onSubmit: SubmitHandler<TEditTaskFormValues> = async (formData) => {
+        const {id, userId} = selectTask
+        
         try {
            const response =  await editTaskRequest({
             ...formData,
-            id: task.id,
-        }, user?.id);
-           onClose()
+            id,
+        }, userId);
+           closeModal()
            reset()
         } catch (error) {
             toast.error("Falha ao editar a tarefa.");
         }
+
     }
 
     if(!isOpen) return <></>;

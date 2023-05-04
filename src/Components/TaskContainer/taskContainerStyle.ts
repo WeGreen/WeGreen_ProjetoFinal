@@ -1,14 +1,20 @@
 import styled from "styled-components"
 
 export const StyledTaskContainer = styled.div`
-height: 100vw;
-width: 400px;
+    height: 100vw;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap:15px;
+
+    margin-top: 15px;
 
 `
 
 export const StyledUserTask = styled.div`
 
     padding: 0 50px;
+    margin-bottom: 20px;
 
     h3{
         color: var(--green1);

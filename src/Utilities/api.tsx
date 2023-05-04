@@ -53,7 +53,7 @@ export const createTaskRequest = (formData: TCreateTaskFormValues, userId?: numb
         headers: {
             "Authorization": `Bearer ${token()}`
         }
-})
+    })
 }
 
 export const editTaskRequest = (task: ITasks, userId?: number) => {
@@ -63,14 +63,16 @@ export const editTaskRequest = (task: ITasks, userId?: number) => {
         headers: {
             "Authorization": `Bearer ${token()}`
         }
-})
+    })
 }
 
 export const deleteTaskRequest = (taskId: number) => {
+    const token = localStorage.getItem( "@wegreen:token" )
 
+    console.log(taskId)
     return api.delete(`/tasks/${taskId}`, {
         headers: {
             "Authorization": `Bearer ${token()}`
         }
-})
+    })
 }

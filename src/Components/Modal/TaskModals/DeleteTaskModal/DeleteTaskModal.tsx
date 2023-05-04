@@ -4,23 +4,30 @@ import { StyledButtonPurple } from "../../../../Styles/StyledButtons";
 import { deleteTaskRequest } from "../../../../Utilities/api";
 import { CloseModalButton } from "../../ModalFragments/CloseModalButton/CloseModalButton";
 import { StyledConfirmationSpan, StyledDeleteConfirmationContainer, StyledDialog, StyledOverlay,StyledPostTitleContainer } from "../../ModalStyles";
-
+import { useContext } from "react";
+import { TaskContext } from "../../../../Providers/TaskProviders/taskContext";
 
 interface TDeleteTaskModalProps {
     isOpen: boolean;
     onClose: () => void;
-    setDeleteTaskisOpen: (value: React.SetStateAction<boolean>) => void;
-    task: ITasks
+    setDeleteTaskIsOpen: (value: React.SetStateAction<boolean>) => void;
+    selectTask: ITasks;
 }
 
+export const DeleteTaskModal = ({ isOpen, onClose, selectTask }: TDeleteTaskModalProps) => {
 
-export const DeleteTaskModal = ({ isOpen, onClose, task }: TDeleteTaskModalProps) => {
+    const { setSelectTaskModalIsOpen } = useContext( TaskContext )
+
+    const closeModal = () => {
+        onClose();
+        setSelectTaskModalIsOpen(false)
+    }
 
     const deleteTask = async() => {
         try {
-            deleteTaskRequest(task.id);
+            deleteTaskRequest(selectTask.id);
             toast.success("Tarefa excluída com sucesso");
-            onClose;
+            closeModal();
         } catch (error) {
             toast.error("Falha ao ecluir a tarefa");
         }
