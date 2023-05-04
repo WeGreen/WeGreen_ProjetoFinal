@@ -38,17 +38,4 @@ export const GlobalStyle = createGlobalStyle`
         font-weight: 400;
         color: var(--black);
     }
-
-   body{
-    background-image: url('twolettuces.svg');
-    background-size: cover;
-   
-   }
-
-
-
-
-
-  
-
 `

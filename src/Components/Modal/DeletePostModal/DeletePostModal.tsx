@@ -1,3 +1,4 @@
+import { toast } from "react-toastify";
 import { StyledButtonPurple } from "../../../Styles/StyledButtons";
 import { TPost, deletePostRequest } from "../../../Utilities/api";
 import { CloseModalButton } from "../ModalFragments/CloseModalButton/CloseModalButton";
@@ -16,12 +17,10 @@ export const DeletePostModal = ({ isOpen, onClose, post }: IDeletePostModalProps
     const deletePost = async() => {
         try {
             deletePostRequest(post.id);
-            console.log("post deletado");
-            //@TODO adicionar toast de sucesso
+            toast.success("Postagem deletada com sucesso!")
             onClose();
         } catch (error) {
-            console.log("erro", error)
-            //@TODO adicionar toast de erro
+            toast.error("Falha ao deletar postagem.")
         }
     }
 

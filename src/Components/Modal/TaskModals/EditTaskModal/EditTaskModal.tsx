@@ -5,36 +5,56 @@ import { CloseModalButton } from "../../ModalFragments/CloseModalButton/CloseMod
 import { StyledModalForm } from "../../ModalFormStyles";
 import { Input } from "../../ModalInputs/ModalInput";
 import { StyledButtonGreen, StyledButtonPurple } from "../../../../Styles/StyledButtons";
-import { ITasks } from "../../../../Providers/TaskProviders/typeTask";
 import { EditTaskSchema, TEditTaskFormValues } from "./EditTaskSchema";
 import { editTaskRequest } from "../../../../Utilities/api";
+import { useContext } from "react";
+import { TaskContext } from "../../../../Providers/TaskProviders/taskContext";
+import { toast } from "react-toastify";
 
 type TEditTaskModalProps = {
     isOpen: boolean;
     onClose: () => void;
-    task: ITasks;
 }
 
-export const EditTasktModal = ({isOpen, onClose, task }: TEditTaskModalProps) => {
-    const { register, handleSubmit, formState:{ errors } } = useForm<TEditTaskFormValues>({
+interface IEditTask extends TEditTaskFormValues {
+     
+    id: number | string,
+    userId: number | string,
+}
+
+export const EditTaskModal = ({isOpen, onClose }: TEditTaskModalProps) => {
+    const { setSelectTaskModalIsOpen, loadingTask, selectTask } = useContext( TaskContext )
+    const { id, userId, title } = selectTask!
+
+    const { register, handleSubmit, formState:{ errors }, reset } = useForm<IEditTask>({
         resolver: zodResolver(EditTaskSchema),
         defaultValues: {
-            title: task.title,
+            title: title,
         }
     })
+
+    const closeModal = () => {
+        onClose();
+        loadingTask();
+        setSelectTaskModalIsOpen(false);
+    }
     
-    const onSubmit: SubmitHandler<TEditTaskFormValues> = async (formData) => {
+    const onSubmit: SubmitHandler<IEditTask> = async (formData) => {
+
+        
         try {
-           const response =  await editTaskRequest({
+           await editTaskRequest({
             ...formData,
-            id: task.id,
-            userId: task.userId
+            id,
+            userId,
         });
-           console.log('sucesso', response)
-           onClose()
+           closeModal()
+           reset()
+           toast.success("Tarefa editada com sucesso.");
         } catch (error) {
-            console.log('erro', errors)
+            toast.error("Falha ao editar a tarefa.");
         }
+
     }
 
     if(!isOpen) return <></>;

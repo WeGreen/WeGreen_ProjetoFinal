@@ -1,8 +1,5 @@
 import styled from "styled-components";
 
-
-
-
 export const Container = styled.fieldset`
 border: none;
 width: 100%;
@@ -17,7 +14,5 @@ outline: none;
 width: 100%;
 border: none;
 border-bottom: 2px solid var(--green2);
-
-
 `
 
