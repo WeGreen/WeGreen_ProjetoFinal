@@ -20,7 +20,7 @@ type TEditTaskModalProps = {
 }
 
 export const EditTaskModal = ({isOpen, onClose, selectTask }: TEditTaskModalProps) => {
-    const { setSelectTaskModalIsOpen } = useContext( TaskContext )
+    const { setSelectTaskModalIsOpen, loadingTask } = useContext( TaskContext )
     const { user } = useContext(UserContext)
 
     const { register, handleSubmit, formState:{ errors }, reset } = useForm<TEditTaskFormValues>({
@@ -32,7 +32,8 @@ export const EditTaskModal = ({isOpen, onClose, selectTask }: TEditTaskModalProp
 
     const closeModal = () => {
         onClose();
-        setSelectTaskModalIsOpen(false)
+        loadingTask();
+        setSelectTaskModalIsOpen(false);
     }
     
     const onSubmit: SubmitHandler<TEditTaskFormValues> = async (formData) => {

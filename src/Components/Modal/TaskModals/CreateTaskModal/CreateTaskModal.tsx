@@ -10,6 +10,7 @@ import { createTaskRequest } from "../../../../Utilities/api";
 import { useContext } from "react";
 import { UserContext } from "../../../../Providers/UserContext";
 import { toast } from "react-toastify";
+import { TaskContext } from "../../../../Providers/TaskProviders/taskContext";
 
 type TCreateTaskModalProps = {
     isOpen: boolean;
@@ -18,6 +19,7 @@ type TCreateTaskModalProps = {
 
 export const CreateTaskModal = ({isOpen, onClose }: TCreateTaskModalProps) => {
     const { user } = useContext(UserContext);
+    const { loadingTask } = useContext(TaskContext);
     const userId = user?.id; 
 
     const { register, handleSubmit, formState:{errors}, reset} = useForm<TCreateTaskFormValues>({
@@ -29,6 +31,7 @@ export const CreateTaskModal = ({isOpen, onClose }: TCreateTaskModalProps) => {
            const response =  await createTaskRequest(formData, userId);
            onClose();
            reset();
+           loadingTask();
         } catch (error) {
             toast.error("Falha ao criar tarefa");
         }

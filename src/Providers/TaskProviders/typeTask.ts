@@ -32,4 +32,5 @@ export interface ITasksContext{
     setSelectTask: Dispatch<SetStateAction<ITasks[]>>,
     currentId: string;
     setCurrentId: Dispatch<SetStateAction<number>>;
+    loadingTask: () => void;
 }

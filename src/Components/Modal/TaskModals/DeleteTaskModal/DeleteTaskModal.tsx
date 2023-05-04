@@ -16,11 +16,12 @@ interface TDeleteTaskModalProps {
 
 export const DeleteTaskModal = ({ isOpen, onClose, selectTask }: TDeleteTaskModalProps) => {
 
-    const { setSelectTaskModalIsOpen } = useContext( TaskContext )
+    const { setSelectTaskModalIsOpen, loadingTask } = useContext( TaskContext )
 
     const closeModal = () => {
         onClose();
-        setSelectTaskModalIsOpen(false)
+        setSelectTaskModalIsOpen(false);
+        loadingTask();
     }
 
     const deleteTask = async() => {
