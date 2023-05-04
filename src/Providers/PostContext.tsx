@@ -3,6 +3,7 @@ import { api } from "../Utilities/api";
 
 interface IPostProviderProps{
     children: React.ReactNode
+    
 }
 
 
@@ -24,22 +25,29 @@ export const PostContext = createContext({} as IPostsContext)
 export const PostProvider = ({children}: IPostProviderProps) => {
     const [postsList, setPostsList] = useState<IPost[]>([])
 
-useEffect(() => {
-   const postsLoad = async () => {
-        try {
-            const { data } = await api.get<IPost[]>('/posts/:id') // A gente tem uma rota só para os posts sem o id?
+    useEffect(() => {
+        const token = localStorage.getItem('@wegreen:token') as string;
+      
+        const postsLoad = async () => {
+          try {
+            const { data } = await api.get<IPost[]>('/posts', {
+              headers: {
+                Authorization: `Bearer ${token}` 
+              }
+            });
             setPostsList(data);
-            
-        } catch (error) {
+          } catch (error) {
             console.log(error);
-            
+          }
         }
-    }
-    postsLoad()
-}, [])
+        
+        postsLoad()
+      }, []);
+      
+  
 
     return(
-        <PostContext.Provider value={{ postsList, }}>
+        <PostContext.Provider value={{ postsList }}>
             {children}
         </PostContext.Provider>
     )
