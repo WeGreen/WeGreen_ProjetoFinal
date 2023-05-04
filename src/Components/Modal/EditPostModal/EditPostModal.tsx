@@ -27,7 +27,7 @@ export const EditPostModal = ({isOpen, onClose, post }: TEditPostModalProps) => 
     
     const onSubmit: SubmitHandler<TEditPostFormValues> = async (formData) => {
         try {
-           const response =  await editPostRequest({
+           await editPostRequest({
             ...formData,
             id: post.id,
             userId: post.userId
