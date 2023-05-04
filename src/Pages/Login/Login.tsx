@@ -1,11 +1,11 @@
 import {SubmitHandler, useForm} from 'react-hook-form';
-import FormInput from "../Components/FormInput/forminput"
-import { Container , Form, FormButton, FormLink, FormTitle, LogoContainer, RedirectContainer} from "../Styles/AuthForm"
+import FormInput from "../../Components/FormInput/forminput"
+import { Container , Form, FormButton, FormLink, FormTitle, LogoContainer, RedirectContainer} from "../../Styles/AuthForm"
 import { LoginSchema, TLoginValues } from './LoginSchema';
 import {zodResolver} from "@hookform/resolvers/zod";
-import logo from "../assets/logo.svg"
+import logo from "../../assets/logo.svg"
 import { useContext } from 'react';
-import { UserContext } from '../Providers/UserContext';
+import { UserContext } from '../../Providers/UserContext';
 
 
 export const LoginPage = () => {

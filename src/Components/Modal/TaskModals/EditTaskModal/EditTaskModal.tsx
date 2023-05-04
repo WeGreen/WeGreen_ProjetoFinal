@@ -16,8 +16,7 @@ type TEditTaskModalProps = {
     onClose: () => void;
 }
 
-interface IEditTask extends TEditTaskFormValues {
-     
+interface IEditTask extends TEditTaskFormValues { 
     id: number | string,
     userId: number | string,
 }
@@ -41,7 +40,6 @@ export const EditTaskModal = ({isOpen, onClose }: TEditTaskModalProps) => {
     
     const onSubmit: SubmitHandler<IEditTask> = async (formData) => {
 
-        
         try {
            await editTaskRequest({
             ...formData,
@@ -54,7 +52,6 @@ export const EditTaskModal = ({isOpen, onClose }: TEditTaskModalProps) => {
         } catch (error) {
             toast.error("Falha ao editar a tarefa.");
         }
-
     }
 
     if(!isOpen) return <></>;

@@ -21,5 +21,4 @@ export const SignupSchema = z.object({
     path:['confirmPassword'],
 });
  
-
 export type TSignupValues = z.infer<typeof SignupSchema>;

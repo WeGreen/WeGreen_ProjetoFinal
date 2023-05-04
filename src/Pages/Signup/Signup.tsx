@@ -1,11 +1,11 @@
 import {SubmitHandler, useForm} from 'react-hook-form';
-import FormInput from "../Components/FormInput/forminput"
-import { Container, Form, FormButton, FormLink, FormTitle, LogoContainer, RedirectContainer } from "../Styles/AuthForm"
+import FormInput from "../../Components/FormInput/forminput"
+import { Container, Form, FormButton, FormLink, FormTitle, LogoContainer, RedirectContainer } from "../../Styles/AuthForm"
 import { SignupSchema , TSignupValues } from './SignupSchema';
 import {zodResolver} from "@hookform/resolvers/zod";
-import logo from "../assets/logo.svg"
+import logo from "../../assets/logo.svg"
 import { useContext } from 'react';
-import { UserContext } from '../Providers/UserContext';
+import { UserContext } from '../../Providers/UserContext';
 export const SignupPage = () => {
     
         const {register , 
@@ -13,13 +13,10 @@ export const SignupPage = () => {
             formState:{errors},
         } = useForm<TSignupValues>({resolver: zodResolver(SignupSchema)})
 
-
         const { register: signup } = useContext(UserContext);
     
         const handleRegister: SubmitHandler<TSignupValues> =(formData)=>{
-
           signup(formData)
-        
         }
 
     return(
