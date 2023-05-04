@@ -1,8 +1,8 @@
 import { createContext, useEffect, useState } from "react";
-import { TLoginValues } from "../Pages/LoginSchema";
+import { TLoginValues } from "../Pages/Login/LoginSchema";
 import { toast } from "react-toastify";
 import { api } from "../Utilities/api";
-import { TSignupValues } from "../Pages/SignupSchema";
+import { TSignupValues } from "../Pages/Signup/SignupSchema";
 import { useNavigate } from "react-router-dom";
 
 interface UserProviderProps {
