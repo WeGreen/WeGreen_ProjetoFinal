@@ -54,8 +54,7 @@ export const EditPostModal = ({isOpen, onClose, post }: TEditPostModalProps) => 
                     <StyledModalButtonsContainer>
                         <StyledButtonPurple onClick={onClose}>Cancelar</StyledButtonPurple>
                         <StyledButtonGreen fluid={false} type="submit">Publicar</StyledButtonGreen>
-                    </StyledModalButtonsContainer>
-                    
+                    </StyledModalButtonsContainer>                 
                 </StyledModalForm>
             </StyledDialog>
         </>
