@@ -1,8 +1,8 @@
 import { createContext, useEffect, useState } from "react";
-import { TLoginValues } from "../Pages/LoginSchema";
+import { TLoginValues } from "../Pages/Login/LoginSchema";
 import { toast } from "react-toastify";
 import { api } from "../Utilities/api";
-import { TSignupValues } from "../Pages/SignupSchema";
+import { TSignupValues } from "../Pages/Signup/SignupSchema";
 import { useNavigate } from "react-router-dom";
 
 interface UserProviderProps {
@@ -61,8 +61,9 @@ export const UserProvider = ({ children }: UserProviderProps) => {
       localStorage.setItem("@wegreen:token", res.data.accessToken);
       localStorage.setItem("@wegreen:userId", JSON.stringify(res.data.user));
       setUser(res.data.user);
+      navigate("/login")
     } catch (error) {
-      toast.error("Verifique os campos se foram prenenchido corretamente e tente novamente!");
+      toast.error("Verifique os campos se foram preenchidos corretamente e tente novamente!");
     } finally {
       setLoading(false);
     }
