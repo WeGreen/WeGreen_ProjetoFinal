@@ -8,6 +8,9 @@ import { StyledButtonGreen, StyledButtonPurple } from "../../../../Styles/Styled
 import { ITasks } from "../../../../Providers/TaskProviders/typeTask";
 import { EditTaskSchema, TEditTaskFormValues } from "./EditTaskSchema";
 import { editTaskRequest } from "../../../../Utilities/api";
+import { useContext } from "react";
+import { UserContext } from "../../../../Providers/UserContext";
+import { toast } from "react-toastify";
 
 type TEditTaskModalProps = {
     isOpen: boolean;
@@ -16,7 +19,9 @@ type TEditTaskModalProps = {
 }
 
 export const EditTasktModal = ({isOpen, onClose, task }: TEditTaskModalProps) => {
-    const { register, handleSubmit, formState:{ errors } } = useForm<TEditTaskFormValues>({
+    const { user } = useContext(UserContext)
+
+    const { register, handleSubmit, formState:{ errors }, reset } = useForm<TEditTaskFormValues>({
         resolver: zodResolver(EditTaskSchema),
         defaultValues: {
             title: task.title,
@@ -28,12 +33,11 @@ export const EditTasktModal = ({isOpen, onClose, task }: TEditTaskModalProps) =>
            const response =  await editTaskRequest({
             ...formData,
             id: task.id,
-            userId: task.userId
-        });
-           console.log('sucesso', response)
+        }, user?.id);
            onClose()
+           reset()
         } catch (error) {
-            console.log('erro', errors)
+            toast.error("Falha ao editar a tarefa.");
         }
     }
 

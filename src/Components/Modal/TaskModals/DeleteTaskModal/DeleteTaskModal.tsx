@@ -1,3 +1,4 @@
+import { toast } from "react-toastify";
 import { ITasks } from "../../../../Providers/TaskProviders/typeTask";
 import { StyledButtonPurple } from "../../../../Styles/StyledButtons";
 import { deleteTaskRequest } from "../../../../Utilities/api";
@@ -18,12 +19,10 @@ export const DeleteTaskModal = ({ isOpen, onClose, task }: TDeleteTaskModalProps
     const deleteTask = async() => {
         try {
             deleteTaskRequest(task.id);
-            console.log("post deletado");
-            //@TODO adicionar toast de sucesso
+            toast.success("Tarefa excluída com sucesso");
             onClose;
         } catch (error) {
-            console.log("erro", error)
-            //@TODO adicionar toast de erro
+            toast.error("Falha ao ecluir a tarefa");
         }
     }
 
