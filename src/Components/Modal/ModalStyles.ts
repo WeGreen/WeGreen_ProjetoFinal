@@ -3,12 +3,13 @@ import styled from "styled-components";
 export const StyledOverlay = styled.div`
     inset: 0;
     background: rgba(18, 18, 20, 0.20);
-    position: absolute;
+    top: 0;
+    left: 0;
+    position: fixed;
     overflow: hidden;
     mask-repeat: repeat-y;
-    min-height: 100%;
-    width: 100%;
-    height: auto;
+    width: 100vw;
+    height: 100vh;
 `
 
 export const StyledDialog = styled.div`
@@ -18,7 +19,7 @@ export const StyledDialog = styled.div`
     background-color: var(--white);
     /* gap: 20px; */
     border-radius: 10px;
-    position: absolute;
+    position: fixed;
     margin: 0 auto;
     top: 200px;
     left: 50%;
