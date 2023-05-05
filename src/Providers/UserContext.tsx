@@ -45,7 +45,6 @@ export const UserProvider = ({ children }: UserProviderProps) => {
 
   const register = async (formData: TSignupValues) => {
     setLoading(true);
-    console.log(formData)
     try {
       const userData = {
         name: formData.name,

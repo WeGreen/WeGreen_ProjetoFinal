@@ -24,7 +24,7 @@ export const TaskProviders = ( { children }: ITasksProviderProps ) => {
         } } );
         setAllListTasks(data);
       } catch (error) {
-        console.log(error);
+        return null
       }
     }
 

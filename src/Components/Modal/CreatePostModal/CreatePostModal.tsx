@@ -27,7 +27,6 @@ export const CreatePostModal = ({isOpen, onClose }: TCreatePostModalProps) => {
     const onSubmit: SubmitHandler<TCreatePostFormValues> = async (formData) => {
         try {
            const response =  await createPostRequest(formData, user?.id);
-           console.log(response)
            onClose()
            reset()
         } catch (error) {
