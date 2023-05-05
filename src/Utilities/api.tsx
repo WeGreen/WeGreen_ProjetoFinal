@@ -10,7 +10,14 @@ export type TPost = {
     id: number
 }
 
+export interface IUser {
+    id: number;
+    name: string;
+    email: string;
+}
+
 type TPostId = number;
+export type TUserId = string | null;
 
 const token = () => localStorage.getItem("@wegreen:token")
 
@@ -61,6 +68,14 @@ export const editTaskRequest = (task: ITasks) => {
 
 export const deleteTaskRequest = (taskId: number) => {
     return api.delete(`/tasks/${taskId}`, {
+        headers: {
+            "Authorization": `Bearer ${token()}`
+        }
+    })
+}
+
+export const fetchUserRequest = (userId: TUserId) => {
+    return api.get<IUser>(`users/${userId}`, {
         headers: {
             "Authorization": `Bearer ${token()}`
         }

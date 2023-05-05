@@ -1,18 +1,12 @@
 import { createContext, useEffect, useState } from "react";
 import { TLoginValues } from "../Pages/Login/LoginSchema";
 import { toast } from "react-toastify";
-import { api } from "../Utilities/api";
+import { IUser, api, fetchUserRequest } from "../Utilities/api";
 import { TSignupValues } from "../Pages/Signup/SignupSchema";
 import { useNavigate } from "react-router-dom";
 
 interface UserProviderProps {
   children: React.ReactNode;
-}
-
-interface IUser {
-  id: number;
-  name: string;
-  email: string;
 }
 
 interface UserContextProps {
@@ -21,12 +15,14 @@ interface UserContextProps {
   register: (userData: TSignupValues) => Promise<void>;
   logout: () => void;
   loading: boolean;
+  isLoadingUser: boolean
 }
 
 export const UserContext = createContext({} as UserContextProps);
 
 export const UserProvider = ({ children }: UserProviderProps) => {
   const [loading, setLoading] = useState(true);
+  const [isLoadingUser, setIsLoadingUser] = useState(true);
   const [user, setUser] = useState<IUser | null >(null);
   const navigate = useNavigate();
 
@@ -36,7 +32,7 @@ export const UserProvider = ({ children }: UserProviderProps) => {
       const res = await api.post("/login", userData);
 
       localStorage.setItem("@wegreen:token", res.data.accessToken);
-      localStorage.setItem("@wegreen:userId", JSON.stringify(res.data.user));
+      localStorage.setItem("@wegreen:userId", res.data.user.id);
 
       setUser(res.data.user);
       navigate("/")
@@ -59,7 +55,7 @@ export const UserProvider = ({ children }: UserProviderProps) => {
 
       const res = await api.post("/register", userData);
       localStorage.setItem("@wegreen:token", res.data.accessToken);
-      localStorage.setItem("@wegreen:userId", JSON.stringify(res.data.user));
+      localStorage.setItem("@wegreen:userId", res.data.user.id);
       setUser(res.data.user);
       navigate("/login")
     } catch (error) {
@@ -79,26 +75,41 @@ export const UserProvider = ({ children }: UserProviderProps) => {
 
   useEffect(() => {
     (async () => {
-      setLoading(true);
-      try {
-        const user = localStorage.getItem("@wegreen:userId");
+      // setLoading(true);
+      // try {
+      //   const token = localStorage.getItem("@wegreen:userId");
+      //   // fazer call to request user
+      //   // se sucesso, seta user via setUser();
+      //   // se erro, faz nada
+      //   // finally, setLoadinFalse
+      //   if (user) {
+      //     setUser(JSON.parse(user));
+      //     navigate("/")
+      //   } else {
+      //     throw new Error();
+      //   }
+      // } catch (error) {
+      //   console.log(error)
+      // } finally {
+      //   setLoading(false);
+      // }
 
-        if (user) {
-          setUser(JSON.parse(user));
-          navigate("/")
-        } else {
-          throw new Error();
-        }
+      try {
+        setIsLoadingUser(true);
+        const userId = localStorage.getItem("@wegreen:userId");
+        const res = await fetchUserRequest(userId)
+        setUser(res.data);
       } catch (error) {
-        console.log(error)
-      } finally {
-        setLoading(false);
+        return null
+      }
+      finally {
+        setIsLoadingUser(false);
       }
     })();
   }, []);
 
   return (
-    <UserContext.Provider value={{ user, login, register, logout, loading }}>
+        <UserContext.Provider value={{ user, login, register, logout, loading, isLoadingUser }}>
       {children}
     </UserContext.Provider>
   );
