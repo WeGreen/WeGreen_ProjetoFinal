@@ -16,18 +16,18 @@ export const DeleteTaskModal = ({ isOpen, onClose }: TDeleteTaskModalProps) => {
     const { setSelectTaskModalIsOpen, loadingTask, selectTask } = useContext( TaskContext )
 
     const closeModal = () => {
+        loadingTask();
         onClose();
         setSelectTaskModalIsOpen(false);
-        loadingTask();
     }
 
     const deleteTask = async() => {
         try {
-            deleteTaskRequest(Number(selectTask?.id));
+            await deleteTaskRequest(Number(selectTask?.id));
             closeModal();
             toast.success("Tarefa excluída com sucesso");
         } catch (error) {
-            toast.error("Falha ao ecluir a tarefa");
+            toast.error("Falha ao excluir a tarefa");
         }
     }
 
