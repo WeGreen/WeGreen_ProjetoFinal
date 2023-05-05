@@ -32,10 +32,11 @@ export const StyledHeaderTask = styled.div`
     figure{
         margin: 0;
         cursor: pointer;
+        height: 25px;
 
         img{
-            height: 30px;
-            width: 30px;
+            height: 25px;
+            width: 25px;
 
             color: var(--green1);
         }

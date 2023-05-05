@@ -4,7 +4,7 @@ interface InputProps{
   id: string;
   type:string;
   label: string;
-  register: any/* UseFormRegisterReturn */;
+  register: any;
   placeholder: string;
   error:string | undefined;
 }

@@ -19,12 +19,12 @@ export const StyledPostList = styled.div`
     padding: 30px;
 
     h2{
-        font-size: 28px;
+        font-size: 1.5rem;
         font-weight: 600;
     }
 
     p{
-        font-size: 18px;
+        font-size: 1rem;
         font-weight: 400;
     }
 `

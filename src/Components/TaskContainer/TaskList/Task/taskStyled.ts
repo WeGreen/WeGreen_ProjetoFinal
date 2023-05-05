@@ -43,7 +43,7 @@ export const StyledTaskCSS = css<IStyledTaskProps>`
     }
 
     .check__title{
-        font-size: 16px;
+        font-size: 1rem;
         font-weight: 600;
 
         width: 180px;
@@ -51,7 +51,7 @@ export const StyledTaskCSS = css<IStyledTaskProps>`
     }
 
     .check__edit{
-        font-size: 20px;
+        font-size: 2rem;
         font-weight: 600;
 
         cursor: pointer;
