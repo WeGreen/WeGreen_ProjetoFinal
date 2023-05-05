@@ -1,49 +1,44 @@
 import styled from "styled-components"
 
 export const StyledTaskContainer = styled.div`
-height: 100vw;
-width: 400px;
 
 `
 
 export const StyledUserTask = styled.div`
+    margin: 20px 0;
 
-    padding: 0 50px;
 
     h3{
-        color: #45710F;
+        color: var(--green1);
     }
 
     p{
-        color: #A0A3A0;
+        color: var(--green2);
     }
 
 `
 
 export const StyledHeaderTask = styled.div`
-
     display: flex;
     align-items: center;
     justify-content: space-between;
-
-    padding: 0 40px 0 50px;
-    
+    width: 95%;
+    margin-bottom: 30px;
 
     h2{
-        color: #45710F;
+        color: var(--green1);
     }
 
     figure{
         margin: 0;
         cursor: pointer;
+        height: 25px;
 
         img{
-            height: 30px;
-            width: 30px;
+            height: 25px;
+            width: 25px;
 
-            color: #45710F;
+            color: var(--green1);
         }
     }
-
-
 `

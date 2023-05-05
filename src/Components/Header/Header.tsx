@@ -1,21 +1,23 @@
-import { useNavigate } from "react-router-dom"
-
-
+import { StyledHeaderContainer } from "./HeaderStyle";
+import { useContext } from "react";
+import { UserContext } from "../../Providers/UserContext";
+import Logo_img from "../../assets/logo.svg"
+import Logout_img from "../../assets/logout.svg"
+ 
 export const Header = () => {
-
-    const navigate = useNavigate();
-
-    const logout = () => {
-        localStorage.removeItem("@wegreen:userId");
-        localStorage.removeItem("@wegreen:token");
-        // setUser(null);
-        navigate("/login");
-    }
+    const { logout } = useContext(UserContext);
 
     return(
-        <header>
-            <h1>WeGreen</h1>
-            <button onClick={logout}><img src="src/assets/logout.svg" alt="Sair do perfil"/></button>
-        </header>
+        <StyledHeaderContainer>
+            <div className="header_innerContainer">
+                <div className="title_container">
+                    <img className="logo_img" src={Logo_img} alt="WeGreen logo" />
+                    <h1 className="header_title">WeGreen</h1>
+                </div>
+                <button className="button_logout" onClick={logout}>
+                    <img className="img_logout" src={Logout_img} alt="Sair do perfil"/>
+                </button>
+            </div>  
+        </StyledHeaderContainer>
     )
 }

@@ -15,6 +15,8 @@ export const GlobalStyle = createGlobalStyle`
     button {
         outline: none;
         cursor: pointer;
+        display: flex;
+        align-items: center;
     }
 
     h1 {
@@ -36,5 +38,4 @@ export const GlobalStyle = createGlobalStyle`
         font-weight: 400;
         color: var(--black);
     }
-
 `

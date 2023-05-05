@@ -39,6 +39,7 @@ footer, header, hgroup, menu, nav, section {
 body {
 	line-height: 1.5;
     font-family: 'Poppins', sans-serif;
+	position: relative;
 }
 ol, ul {
 	list-style: none;
@@ -56,7 +57,7 @@ table {
 	border-spacing: 0;
 }
 
-h1, h2, h3, h4, p, span {
+h1, h2, h3, h4, p, span, button {
     font-family: 'Poppins', sans-serif;
 }
 `
