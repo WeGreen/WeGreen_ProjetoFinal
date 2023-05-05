@@ -7,7 +7,7 @@ import { Input } from "../../ModalInputs/ModalInput";
 import { StyledButtonGreen, StyledButtonPurple } from "../../../../Styles/StyledButtons";
 import { EditTaskSchema, TEditTaskFormValues } from "./EditTaskSchema";
 import { editTaskRequest } from "../../../../Utilities/api";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { TaskContext } from "../../../../Providers/TaskProviders/taskContext";
 import { toast } from "react-toastify";
 
@@ -23,13 +23,9 @@ interface IEditTask extends TEditTaskFormValues {
 
 export const EditTaskModal = ({isOpen, onClose }: TEditTaskModalProps) => {
     const { setSelectTaskModalIsOpen, loadingTask, selectTask } = useContext( TaskContext )
-    const { id, userId, title } = selectTask!
 
     const { register, handleSubmit, formState:{ errors }, reset } = useForm<IEditTask>({
         resolver: zodResolver(EditTaskSchema),
-        defaultValues: {
-            title: title,
-        }
     })
 
     const closeModal = () => {
@@ -37,14 +33,19 @@ export const EditTaskModal = ({isOpen, onClose }: TEditTaskModalProps) => {
         loadingTask();
         setSelectTaskModalIsOpen(false);
     }
+
+    useEffect(() => {
+        if(selectTask) reset(selectTask)
+    }, [selectTask, reset])
     
     const onSubmit: SubmitHandler<IEditTask> = async (formData) => {
+        if (!selectTask) return null
 
         try {
            await editTaskRequest({
             ...formData,
-            id,
-            userId,
+            id: selectTask.id,
+            userId: selectTask.userId,
         });
            closeModal()
            reset()

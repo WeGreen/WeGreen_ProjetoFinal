@@ -13,9 +13,9 @@ type TChoseTaskModalProps = {
 
 
 export const ModalOfChoice = ({ isOpen, onClose }: TChoseTaskModalProps) => {
-    const { editTaskModalIsOpen, setEditTaskModalIsOpen, deleteTaskModalIsOpen, setDeleteTaskModalIsOpen } = useContext( TaskContext )
+    const { editTaskModalIsOpen, selectTask, setEditTaskModalIsOpen, deleteTaskModalIsOpen, setDeleteTaskModalIsOpen } = useContext( TaskContext )
 
-    if(!isOpen) return <></>;
+    if(!isOpen || !selectTask) return <></>;
 
     return(
         <>
