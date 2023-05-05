@@ -60,6 +60,7 @@ export const StyledCloseModalButton = styled.button`
     height: 38px;
     border-radius: 4px;
     margin-left: 120px;
+    font-size: 1rem;
 
     &:hover {
         border: 2px solid var(--purple1);

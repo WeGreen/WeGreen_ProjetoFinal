@@ -51,8 +51,8 @@ export const StyledHeaderContainer = styled.header`
         }
 
         img.img_logout{
-            width: 38px;
-            height: 38px;
+            width: 30px;
+            height: 30px;
         }
 
     }

@@ -4,8 +4,6 @@ import { StyledPostContainer, StyledPostList } from "./PostListStyle";
 
 export const PostsList = () => {
   const { postsList } = useContext(PostContext);
-  console.log(postsList);
-  
 
   return (
     <StyledPostContainer>

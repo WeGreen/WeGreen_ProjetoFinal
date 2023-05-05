@@ -46,7 +46,7 @@ img{
 `
 
 export const FormTitle = styled.h1`
-font-size: 28px;
+font-size: 1.75rem;
 color: var(--green1);
 `
 
@@ -101,14 +101,14 @@ export const RedirectContainer = styled.div<RedirectProps>`
 
  p{
     font-weight: 500;
-    font-size: 18px;
+    font-size: 1.125rem;
     color: #212529;
 
  }
 
  span{
     font-weight: 400;
-    font-size: 18px;
+    font-size: 1.125rem;
     color: #495057;
  }
 
