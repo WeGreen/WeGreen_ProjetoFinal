@@ -37,6 +37,8 @@ export const UserProvider = ({ children }: UserProviderProps) => {
       setUser(res.data.user);
       navigate("/")
     } catch (error) {
+      console.log(userData);
+      
       toast.error("Verifique seu e-mail e sua senha e tente novamente!");
     } finally {
       setLoading(false);
@@ -59,6 +61,8 @@ export const UserProvider = ({ children }: UserProviderProps) => {
       setUser(res.data.user);
       navigate("/login")
     } catch (error) {
+      console.log(formData);
+      
       toast.error("Verifique os campos se foram preenchidos corretamente e tente novamente!");
     } finally {
       setLoading(false);

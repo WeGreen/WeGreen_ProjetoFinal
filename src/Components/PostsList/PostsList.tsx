@@ -2,6 +2,7 @@ import { useState, useContext } from "react";
 import { PostContext } from "../../Providers/PostContext";
 import { DeletePostModal } from "../Modal/DeletePostModal/DeletePostModal";
 import { TPost } from "../../Utilities/api";
+import { EditPostModal } from "../Modal/EditPostModal/EditPostModal";
 
 export const PostsList = () => {
   const { postsList } = useContext(PostContext);
@@ -13,6 +14,14 @@ export const PostsList = () => {
     setIsDeleteModalOpen(true);
   };
 
+  const handleEditClick = (post) => {
+
+    EditPostModal(true, PostsList)
+    console.log(post);
+    
+  }
+
+
   return (
     <div>
       {postsList.map((post) => (
@@ -21,7 +30,7 @@ export const PostsList = () => {
           <p>{post.content}</p>
           <div className="BtnsContainer">
             <button onClick={() => handleDeleteClick(post)}>Excluir</button>
-            <button>Editar</button>
+            <button onClick={() => handleEditClick(post)} >Editar</button>
           </div>
         </div>
       ))}
