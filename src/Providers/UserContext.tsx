@@ -21,7 +21,7 @@ interface UserContextProps {
 export const UserContext = createContext({} as UserContextProps);
 
 export const UserProvider = ({ children }: UserProviderProps) => {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [isLoadingUser, setIsLoadingUser] = useState(true);
   const [user, setUser] = useState<IUser | null >(null);
   const navigate = useNavigate();
@@ -70,30 +70,10 @@ export const UserProvider = ({ children }: UserProviderProps) => {
     localStorage.removeItem("@wegreen:token");
 
     setUser(null);
-    return;
   };
 
   useEffect(() => {
     (async () => {
-      // setLoading(true);
-      // try {
-      //   const token = localStorage.getItem("@wegreen:userId");
-      //   // fazer call to request user
-      //   // se sucesso, seta user via setUser();
-      //   // se erro, faz nada
-      //   // finally, setLoadinFalse
-      //   if (user) {
-      //     setUser(JSON.parse(user));
-      //     navigate("/")
-      //   } else {
-      //     throw new Error();
-      //   }
-      // } catch (error) {
-      //   console.log(error)
-      // } finally {
-      //   setLoading(false);
-      // }
-
       try {
         setIsLoadingUser(true);
         const userId = localStorage.getItem("@wegreen:userId");
