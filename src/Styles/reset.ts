@@ -39,7 +39,7 @@ footer, header, hgroup, menu, nav, section {
 body {
 	line-height: 1.5;
     font-family: 'Poppins', sans-serif;
-	position: relative
+	position: relative;
 }
 ol, ul {
 	list-style: none;

@@ -16,7 +16,7 @@ export const SignupPage = () => {
         const { register: signup } = useContext(UserContext);
     
         const handleRegister: SubmitHandler<TSignupValues> =(formData)=>{
-           signup(formData);      
+          signup(formData)
         }
 
     return(

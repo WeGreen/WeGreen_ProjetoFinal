@@ -1,20 +1,20 @@
 import { Header } from "../Components/Header/Header"
 import { TaskContainer } from "../Components/TaskContainer/taskContainer"
-
-import { useContext } from 'react';
-import { PostContext } from "../Providers/PostContext"; 
 import { PostsList } from "../Components/PostsList/PostsList";
+import { StyledDashboard } from "../Styles/dashboardStyled";
 
 
     
 export const Dashboard = () => {
-    const { postsList } = useContext(PostContext);
-
+   
     return(
         <>
             <Header/>
-            <PostsList />
-            <TaskContainer />
+            <StyledDashboard>
+                <TaskContainer />
+                <hr />
+                <PostsList />
+            </StyledDashboard>
         </>
     )
 }

@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { PostContext } from "../../Providers/PostContext"; 
+import { StyledPostContainer, StyledPostList } from "./PostListStyle";
 
 export const PostsList = () => {
   const { postsList } = useContext(PostContext);
@@ -7,13 +8,13 @@ export const PostsList = () => {
   
 
   return (
-    <div>
+    <StyledPostContainer>
       {postsList.map((post) => (
-        <div key={post.id}>
+        <StyledPostList key={post.id}>
           <h2>{post.title}</h2>
           <p>{post.content}</p>
-        </div>
+        </StyledPostList>
       ))}
-    </div>
+    </StyledPostContainer>
   );
 };
